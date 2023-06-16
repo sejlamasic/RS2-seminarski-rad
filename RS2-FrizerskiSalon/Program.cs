@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using RS2_FrizerskiSalon.Configuration;
 using RS2_FrizerskiSalon.Database;
+using RS2_FrizerskiSalon.Extensions;
 using RS2_FrizerskiSalon.Services;
 using System.Text;
 
@@ -15,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<FrizerskiStudioRsiiContext>(options => 
+builder.Services.AddDbContext<FrizerskiStudioRsiiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
@@ -111,25 +112,35 @@ builder.Services.AddTransient<INarudzbaService, NarudzbaService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
+    var logger = loggerFactory.CreateLogger<Program>();
+
+    try
+    {
+        var ctx = scope.ServiceProvider.GetRequiredService<FrizerskiStudioRsiiContext>();
+        ctx.MigrateAndSeedDatabase();
+    }
+    catch (Exception ex)
+    {
+        logger.LogCritical(ex, ex.Message);
+        return;
+    }
 }
+
+// Configure the HTTP request pipeline.
+app.UseSwagger();
+app.UseSwaggerUI();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 app.UseCors();
-
 app.Run();
 

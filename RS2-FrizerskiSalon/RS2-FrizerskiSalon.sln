@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS2-FrizerskiSalon", "RS2-FrizerskiSalon.csproj", "{1BB3A411-9533-4C75-89FC-2D0E48E49212}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96629902-B5E6-47B2-B461-5D13F03E0929} = {96629902-B5E6-47B2-B461-5D13F03E0929}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrizerskiSalon.Modal", "..\FrizerskiSalon.Modal\FrizerskiSalon.Modal.csproj", "{8F106AF6-BE2E-4B55-9DE7-DD2A165306B0}"
 EndProject

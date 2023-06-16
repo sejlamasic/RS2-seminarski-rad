@@ -5,7 +5,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-RUN echo "EVO ME NA PO?ETKU"
+RUN echo "EVO ME NA POCETKU"
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src

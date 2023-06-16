@@ -19,11 +19,12 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=frizerskisalon-sql,1433;Database=FrizerskiSalonII;User=sa;Password=YourStrong@Passw0rd;ConnectRetryCount=0
+      - ConnectionStrings__DefaultConnection=Server=frizerskisalon-sql,1433;Database=FrizerskiSalonII;User=sa;Password=yourStrong@Passw0rd;ConnectRetryCount=0;TrustServerCertificate=true;
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - 80:80
     networks:
-      - frizerskisalonnet      
+      - frizerskisalonnet
     links:
       - frizerskisalon-sql
     depends_on:
