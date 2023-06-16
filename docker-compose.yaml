@@ -1,0 +1,34 @@
+
+version: '3'
+services:
+#mssql docker
+  frizerskisalon-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong@Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - frizerskisalonnet
+
+  frizerskisalon-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=frizerskisalon-sql,1433;Database=FrizerskiSalonII;User=sa;Password=YourStrong@Passw0rd;ConnectRetryCount=0
+    ports:
+      - 80:80
+    networks:
+      - frizerskisalonnet      
+    links:
+      - frizerskisalon-sql
+    depends_on:
+      - frizerskisalon-sql
+      
+networks:
+  frizerskisalonnet:
+    driver: bridge 
