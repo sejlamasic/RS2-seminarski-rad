@@ -27,7 +27,7 @@ class APIService with ChangeNotifier {
 
   //static const String _baseRoute = "http://10.0.2.2:52830/api/";
   // static const String _baseRoute = "http://10.0.2.2:80/api/";
-static const String _baseRoute = "https://localhost:80/api/";
+static const String _baseRoute = "http://localhost/api/";
   static Future<String?> prijava(String KorisnickoIme, String Lozinka) async{
 
     

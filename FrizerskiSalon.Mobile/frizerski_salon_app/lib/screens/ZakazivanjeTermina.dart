@@ -67,10 +67,10 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
     const _obaveznoPolje = "Polje je obavezno";
     TextStyle style = const TextStyle(fontSize: 16);
     List<DropdownMenuItem> tipTermina = [
-      DropdownMenuItem(child: Text("Tattoo appointment",
+      DropdownMenuItem(child: Text("Frizura appointment",
       style: TextStyle(fontSize: 16, color: Colors.grey)),
       value: 1),
-      DropdownMenuItem(child: Text("Piercing appointment",
+      DropdownMenuItem(child: Text("Šišanje appointment",
       style: TextStyle(fontSize: 16, color: Colors.grey),),
       value: 2)
     ];

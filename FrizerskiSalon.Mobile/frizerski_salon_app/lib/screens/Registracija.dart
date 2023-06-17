@@ -353,10 +353,10 @@ class _RegistracijaState extends State<Registracija> {
                   Image(
                     width: 100,
                     height: 100,
-                    image: AssetImage('assets/images/tattoostudiologo.png'),
+                    image: AssetImage('assets/images/logo.png'),
                   ),
                   Text(
-                    'Tattoo studio',
+                    'Frizerski studio',
                     style: TextStyle(fontSize: 22),
                   )
                 ],

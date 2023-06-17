@@ -10,7 +10,7 @@ services:
       - SA_PASSWORD=yourStrong@Passw0rd
       - MSSQL_PID=Developer
     ports:
-      - 1401:1433
+      - 1401:1433  
     networks:
       - frizerskisalonnet
 

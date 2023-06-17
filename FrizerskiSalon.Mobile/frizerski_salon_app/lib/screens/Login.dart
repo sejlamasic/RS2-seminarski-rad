@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
       child: Padding(
         padding: EdgeInsets.all(60),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image(image: AssetImage('assets/images/tattoostudiologo.png')),
+          Image(image: AssetImage('assets/images/logo.png')),
           SizedBox(height: 10),
           TextField(
               controller: korisnickoImeController,

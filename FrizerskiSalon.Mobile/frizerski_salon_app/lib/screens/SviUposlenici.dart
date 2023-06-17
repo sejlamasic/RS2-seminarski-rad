@@ -18,7 +18,7 @@ class _SviUposleniciState extends State<SviUposlenici> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tattoo & piercing artisti'),
+        title: Text('Frizeri'),
         backgroundColor: Colors.blue,
       ),
       body: Column(

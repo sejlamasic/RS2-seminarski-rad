@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
                 Navigator.of(context).pushNamed('/sviProizvodi');
               }),
           ListTile(
-              title: Text('Tattoo & piercing artisti'),
+              title: Text('Frizeri'),
               onTap: () {
                 Navigator.of(context).pushNamed('/sviUposlenici');
               }),
