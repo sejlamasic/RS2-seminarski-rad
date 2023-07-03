@@ -60,7 +60,7 @@ namespace FrizerskiSalon.WinUI.Portfolio
                     else
                     {
                         //request.Uposlenikid = Global.prijavljeniUposlenik.UposlenikId;
-                        await _portfolioService.Insert<Modal.Portfolio>(request, "relative/route");
+                        await _portfolioService.Insert<Modal.Portfolio>(request);
                     }
                 }
                 catch (Exception ex)
@@ -74,7 +74,7 @@ namespace FrizerskiSalon.WinUI.Portfolio
         {
             frmStavkaDetalji frm = new frmStavkaDetalji();
             frm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void dgvStavkePortfolija_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -82,7 +82,7 @@ namespace FrizerskiSalon.WinUI.Portfolio
             var item = dgvStavkePortfolija.SelectedRows[0].DataBoundItem;
             frmStavkaDetalji frm = new frmStavkaDetalji(item as Modal.StavkePortfolium);
             frm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private bool ValidirajUnos()

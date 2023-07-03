@@ -13,13 +13,13 @@ namespace RS2_FrizerskiSalon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ProizvodController : BaseCRUDController<FrizerskiSalon.Modal.Proizvod, ProizvodSearchObject, ProizvodInsertRequest, ProizvodInsertRequest>
     {
         public ProizvodController(IProizvodService service)
             :base(service)
         {
         }
-
         [HttpGet("Recommend/{id}")]
         public List<FrizerskiSalon.Modal.Proizvod> Recommend(int id)
         {

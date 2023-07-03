@@ -34,7 +34,7 @@ namespace FrizerskiSalon.WinUI.Izvjestaj
                     zaJednogUposlenog = rbUposlenik.Checked,
                     zaSveUposlene = rbSviUposlenici.Checked
                 };
-                var izvjestaj = await _izvjestajService.Insert<Modal.Izvjestaj>(request, "Izvjestaj");
+                var izvjestaj = await _izvjestajService.Insert<Modal.Izvjestaj>(request);
                 frmIzvjestajDetalji frm = new frmIzvjestajDetalji(izvjestaj);
                 frm.Show();
                 this.Close();

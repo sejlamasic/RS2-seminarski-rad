@@ -13,6 +13,7 @@ namespace RS2_FrizerskiSalon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class NarudzbaController : BaseCRUDController<FrizerskiSalon.Modal.Narudzba, NarudzbaSearchObject, NarudzbaInsertRequest, NarudzbaInsertRequest>
     {
         public NarudzbaController(INarudzbaService service)

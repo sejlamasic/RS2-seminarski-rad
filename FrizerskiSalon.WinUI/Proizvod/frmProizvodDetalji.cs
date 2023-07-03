@@ -78,7 +78,7 @@ namespace FrizerskiSalon.WinUI.Proizvod
                     request.Slika = stream.ToArray();
                     if (_proizvod == null)
                     {
-                        await _proizvodiService.Insert<Modal.Proizvod>(request, "relative/route");
+                        await _proizvodiService.Insert<Modal.Proizvod>(request);
                     }
                     else
                     {

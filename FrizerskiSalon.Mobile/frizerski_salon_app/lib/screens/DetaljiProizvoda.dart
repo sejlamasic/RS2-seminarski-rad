@@ -1,14 +1,11 @@
 
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '/model/Narudzbe.dart';
 import '/model/Proizvodi.dart';
-import '/model/StavkeNarudzbe.dart';
 import '/providers/apiservice.dart';
-import '/screens/Narudzba.dart';
-import 'SviProizvodi.dart';
 
+// ignore: must_be_immutable
 class DetaljiProizvoda extends StatelessWidget {
   final Proizvodi? proizvod;
   DetaljiProizvoda({Key? key, this.proizvod}) : super(key: key);
@@ -21,6 +18,7 @@ class DetaljiProizvoda extends StatelessWidget {
       recommended.map((i)=>Proizvodi.fromJson(i)).toList();
       _recommendedProizvodi = recommended;
     }
+    return null;
 
     
   }
@@ -29,7 +27,7 @@ class DetaljiProizvoda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Detalji proizvoda',
           style: TextStyle(fontSize: 20),
         ),
@@ -39,7 +37,7 @@ class DetaljiProizvoda extends StatelessWidget {
         future: getRecommendedProizvodi(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: Text('Loading...'),
             );
           } else {
@@ -51,7 +49,7 @@ class DetaljiProizvoda extends StatelessWidget {
               return SingleChildScrollView(
       child: Column(
         children: [
-          Center(
+          const Center(
             child: Image(
                 height: 160,
                 width: 160,
@@ -62,43 +60,44 @@ class DetaljiProizvoda extends StatelessWidget {
           ),
           Text(
             proizvod!.naziv!,
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           ),
           Text(
-            proizvod!.cijena! + ' KM',
-            style: TextStyle(fontSize: 20),
+            '${proizvod!.cijena!} KM',
+            style: const TextStyle(fontSize: 20),
           ),
           Text(
             proizvod!.opis!,
-            style: TextStyle(fontSize: 17),
+            style: const TextStyle(fontSize: 17),
           ),
           Padding(
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: TextButton(
                 onPressed: () async {
                   var response = await APIService.GetById("Narudzba", APIService.aktivnaNarudzba, null);
-                  Narudzbe narudzba= new Narudzbe.fromJson(response);
+                  Narudzbe narudzba= Narudzbe.fromJson(response);
                   if(narudzba.IsPlacena==false && narudzba.isIsporucena==false)
                   {
                     Map<String, dynamic> insertRequest = { 'narudzbaId': APIService.aktivnaNarudzba, 'proizvodId': proizvod!.proizvodId, 'kolicina': 1};
                     await APIService.Post("StavkeNarudzbe", jsonEncode(insertRequest));
                   }
                 },
-                child: Image(
+                child: const Image(
                     width: 40,
                     height: 40,
-                    image: AssetImage('assets/images/korpa.png')),
+                    image: AssetImage('assets/images/kosrpa.png')),
               )),
-              SizedBox(height: 20,),
-              Text("Broj prodanih proizvoda je"),
-              SizedBox(height: 20,),
-              Text("Korisnicima se svidjelo još i...", style: TextStyle(color: Colors.blueGrey, fontSize: 16)),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
+              const Text("Broj prodanih proizvoda je"),
+              const SizedBox(height: 20,),
+              const Text("Korisnicima se svidjelo još i...", style: TextStyle(color: Colors.blueGrey, fontSize: 16)),
+              const SizedBox(height: 20,),
+              // ignore: unrelated_type_equality_checks
               if(_recommendedProizvodi != "[]")
               ListView(
                 shrinkWrap:true,
                   children: 
-                  _recommendedProizvodi!.map((e) => new Card(
+                  _recommendedProizvodi!.map((e) => Card(
                     child: TextButton(
                     onPressed: () {
                     Navigator.push(

@@ -57,7 +57,7 @@ namespace FrizerskiSalon.WinUI.Izvjestaj
             {
                 var frm = new frmTipIzvjestaja();
                 frm.Show();
-                Close();
+                Hide();
             }
             catch(Exception ex)
             {

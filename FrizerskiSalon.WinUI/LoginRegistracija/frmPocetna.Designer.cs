@@ -29,150 +29,141 @@ namespace FrizerskiSalon.WinUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.izvještajiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.klijentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.narudžbeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.obavijestiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.portfolioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proizvodiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.terminiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uposlenikProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.menuStrip.SuspendLayout();
-            this.statusStrip.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            menuStrip = new MenuStrip();
+            izvještajiToolStripMenuItem = new ToolStripMenuItem();
+            klijentiToolStripMenuItem = new ToolStripMenuItem();
+            narudžbeToolStripMenuItem = new ToolStripMenuItem();
+            obavijestiToolStripMenuItem = new ToolStripMenuItem();
+            portfolioToolStripMenuItem = new ToolStripMenuItem();
+            proizvodiToolStripMenuItem = new ToolStripMenuItem();
+            terminiToolStripMenuItem = new ToolStripMenuItem();
+            uposlenikProfilToolStripMenuItem = new ToolStripMenuItem();
+            statusStrip = new StatusStrip();
+            toolStripStatusLabel = new ToolStripStatusLabel();
+            toolTip = new ToolTip(components);
+            menuStrip.SuspendLayout();
+            statusStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip
             // 
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.izvještajiToolStripMenuItem,
-            this.klijentiToolStripMenuItem,
-            this.narudžbeToolStripMenuItem,
-            this.obavijestiToolStripMenuItem,
-            this.portfolioToolStripMenuItem,
-            this.proizvodiToolStripMenuItem,
-            this.terminiToolStripMenuItem,
-            this.uposlenikProfilToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(843, 28);
-            this.menuStrip.TabIndex = 0;
-            this.menuStrip.Text = "MenuStrip";
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { izvještajiToolStripMenuItem, klijentiToolStripMenuItem, narudžbeToolStripMenuItem, obavijestiToolStripMenuItem, portfolioToolStripMenuItem, proizvodiToolStripMenuItem, terminiToolStripMenuItem, uposlenikProfilToolStripMenuItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new Padding(8, 3, 0, 3);
+            menuStrip.Size = new Size(1054, 35);
+            menuStrip.TabIndex = 0;
+            menuStrip.Text = "MenuStrip";
             // 
             // izvještajiToolStripMenuItem
             // 
-            this.izvještajiToolStripMenuItem.Name = "izvještajiToolStripMenuItem";
-            this.izvještajiToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.izvještajiToolStripMenuItem.Text = "Izvještaji";
-            this.izvještajiToolStripMenuItem.Click += new System.EventHandler(this.izvještajiToolStripMenuItem_Click);
+            izvještajiToolStripMenuItem.Name = "izvještajiToolStripMenuItem";
+            izvještajiToolStripMenuItem.Size = new Size(94, 29);
+            izvještajiToolStripMenuItem.Text = "Izvještaji";
+            izvještajiToolStripMenuItem.Click += izvještajiToolStripMenuItem_Click;
             // 
             // klijentiToolStripMenuItem
             // 
-            this.klijentiToolStripMenuItem.Name = "klijentiToolStripMenuItem";
-            this.klijentiToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.klijentiToolStripMenuItem.Text = "Klijenti";
-            this.klijentiToolStripMenuItem.Click += new System.EventHandler(this.klijentiToolStripMenuItem_Click);
+            klijentiToolStripMenuItem.Name = "klijentiToolStripMenuItem";
+            klijentiToolStripMenuItem.Size = new Size(79, 29);
+            klijentiToolStripMenuItem.Text = "Klijenti";
+            klijentiToolStripMenuItem.Click += klijentiToolStripMenuItem_Click;
             // 
             // narudžbeToolStripMenuItem
             // 
-            this.narudžbeToolStripMenuItem.Name = "narudžbeToolStripMenuItem";
-            this.narudžbeToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
-            this.narudžbeToolStripMenuItem.Text = "Narudžbe";
-            this.narudžbeToolStripMenuItem.Click += new System.EventHandler(this.narudžbeToolStripMenuItem_Click);
+            narudžbeToolStripMenuItem.Name = "narudžbeToolStripMenuItem";
+            narudžbeToolStripMenuItem.Size = new Size(105, 29);
+            narudžbeToolStripMenuItem.Text = "Narudžbe";
+            narudžbeToolStripMenuItem.Click += narudžbeToolStripMenuItem_Click;
             // 
             // obavijestiToolStripMenuItem
             // 
-            this.obavijestiToolStripMenuItem.Name = "obavijestiToolStripMenuItem";
-            this.obavijestiToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
-            this.obavijestiToolStripMenuItem.Text = "Obavijesti";
-            this.obavijestiToolStripMenuItem.Click += new System.EventHandler(this.obavijestiToolStripMenuItem_Click);
+            obavijestiToolStripMenuItem.Name = "obavijestiToolStripMenuItem";
+            obavijestiToolStripMenuItem.Size = new Size(106, 29);
+            obavijestiToolStripMenuItem.Text = "Obavijesti";
+            obavijestiToolStripMenuItem.Click += obavijestiToolStripMenuItem_Click;
             // 
             // portfolioToolStripMenuItem
             // 
-            this.portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
-            this.portfolioToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.portfolioToolStripMenuItem.Text = "Portfolio";
-            this.portfolioToolStripMenuItem.Click += new System.EventHandler(this.portfolioToolStripMenuItem_Click);
+            portfolioToolStripMenuItem.Name = "portfolioToolStripMenuItem";
+            portfolioToolStripMenuItem.Size = new Size(96, 29);
+            portfolioToolStripMenuItem.Text = "Portfolio";
+            portfolioToolStripMenuItem.Click += portfolioToolStripMenuItem_Click;
             // 
             // proizvodiToolStripMenuItem
             // 
-            this.proizvodiToolStripMenuItem.Name = "proizvodiToolStripMenuItem";
-            this.proizvodiToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
-            this.proizvodiToolStripMenuItem.Text = "Proizvodi";
-            this.proizvodiToolStripMenuItem.Click += new System.EventHandler(this.proizvodiToolStripMenuItem_Click);
+            proizvodiToolStripMenuItem.Name = "proizvodiToolStripMenuItem";
+            proizvodiToolStripMenuItem.Size = new Size(102, 29);
+            proizvodiToolStripMenuItem.Text = "Proizvodi";
+            proizvodiToolStripMenuItem.Click += proizvodiToolStripMenuItem_Click;
             // 
             // terminiToolStripMenuItem
             // 
-            this.terminiToolStripMenuItem.Name = "terminiToolStripMenuItem";
-            this.terminiToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
-            this.terminiToolStripMenuItem.Text = "Termini";
-            this.terminiToolStripMenuItem.Click += new System.EventHandler(this.terminiToolStripMenuItem_Click);
+            terminiToolStripMenuItem.Name = "terminiToolStripMenuItem";
+            terminiToolStripMenuItem.Size = new Size(84, 29);
+            terminiToolStripMenuItem.Text = "Termini";
+            terminiToolStripMenuItem.Click += terminiToolStripMenuItem_Click;
             // 
             // uposlenikProfilToolStripMenuItem
             // 
-            this.uposlenikProfilToolStripMenuItem.Name = "uposlenikProfilToolStripMenuItem";
-            this.uposlenikProfilToolStripMenuItem.Size = new System.Drawing.Size(128, 24);
-            this.uposlenikProfilToolStripMenuItem.Text = "Uposlenik profil";
-            this.uposlenikProfilToolStripMenuItem.Click += new System.EventHandler(this.uposlenikProfilToolStripMenuItem_Click);
+            uposlenikProfilToolStripMenuItem.Name = "uposlenikProfilToolStripMenuItem";
+            uposlenikProfilToolStripMenuItem.Size = new Size(153, 29);
+            uposlenikProfilToolStripMenuItem.Text = "Uposlenik profil";
+            uposlenikProfilToolStripMenuItem.Click += uposlenikProfilToolStripMenuItem_Click;
             // 
             // statusStrip
             // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 532);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(843, 26);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "StatusStrip";
+            statusStrip.ImageScalingSize = new Size(20, 20);
+            statusStrip.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel });
+            statusStrip.Location = new Point(0, 840);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Padding = new Padding(1, 0, 24, 0);
+            statusStrip.Size = new Size(1054, 32);
+            statusStrip.TabIndex = 2;
+            statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
-            this.toolStripStatusLabel.Text = "Status";
+            toolStripStatusLabel.Name = "toolStripStatusLabel";
+            toolStripStatusLabel.Size = new Size(60, 25);
+            toolStripStatusLabel.Text = "Status";
             // 
             // frmPocetna
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 558);
-            this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.menuStrip);
-            this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmPocetna";
-            this.Text = "Frizerski salon";
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1054, 872);
+            Controls.Add(statusStrip);
+            Controls.Add(menuStrip);
+            IsMdiContainer = true;
+            MainMenuStrip = menuStrip;
+            Margin = new Padding(5, 6, 5, 6);
+            Name = "frmPocetna";
+            Text = "Frizerski salon";
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
         #endregion
 
 
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.ToolStripMenuItem izvještajiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem klijentiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem narudžbeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem obavijestiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem portfolioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem proizvodiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem terminiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uposlenikProfilToolStripMenuItem;
+        private MenuStrip menuStrip;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel toolStripStatusLabel;
+        private ToolTip toolTip;
+        private ToolStripMenuItem izvještajiToolStripMenuItem;
+        private ToolStripMenuItem klijentiToolStripMenuItem;
+        private ToolStripMenuItem narudžbeToolStripMenuItem;
+        private ToolStripMenuItem obavijestiToolStripMenuItem;
+        private ToolStripMenuItem portfolioToolStripMenuItem;
+        private ToolStripMenuItem proizvodiToolStripMenuItem;
+        private ToolStripMenuItem terminiToolStripMenuItem;
+        private ToolStripMenuItem uposlenikProfilToolStripMenuItem;
     }
 }
 

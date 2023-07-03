@@ -7,7 +7,7 @@ using RS2_FrizerskiSalon.Database;
 using RS2_FrizerskiSalon.Extensions;
 using RS2_FrizerskiSalon.Services;
 using System.Text;
-
+using Microsoft.AspNetCore.Cors;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,47 +16,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 builder.Services.AddDbContext<FrizerskiStudioRsiiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        var config = builder.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
-
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ClockSkew = TimeSpan.Zero,
-//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Secret)),
-//            ValidateIssuer = false,
-//            ValidateAudience = false
-//        };
-
-//        options.Events = new JwtBearerEvents
-//        {
-//            OnAuthenticationFailed = ctx =>
-//            {
-//                if (ctx.Exception is SecurityTokenExpiredException)
-//                {
-//                    ctx.Response.Headers.Add("Token-Expired", "true");
-//                }
-//                ctx.Response.Headers["Content-Type"] = "application/json";
-//                ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
-//                ctx.Fail("Expired token");
-//                return ctx.Response.WriteAsync(JsonConvert.SerializeObject(new { message = "Unauthorized" }));
-//            }
-//        };
-//    });
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
+    options.AddPolicy("CorsPolicy", builder =>
     {
         builder.AllowAnyOrigin()
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+               .AllowAnyMethod()
+               .AllowAnyHeader();
     });
 });
+
 
 builder.Services
     .AddAuthentication(options =>
@@ -141,6 +115,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors();
+app.UseCors("CorsPolicy");
 app.Run();
 

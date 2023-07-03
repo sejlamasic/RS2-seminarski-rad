@@ -45,8 +45,8 @@ namespace FrizerskiSalon.WinUI.Proizvod
             var item = dgvProizvodi.SelectedRows[0].DataBoundItem;
             frmProizvodDetalji frm = new frmProizvodDetalji(item as Modal.Proizvod);
             frm.Show();
-            this.Close();
-        }
+            this.Hide();   
+        }   
 
         private async Task LoadTipProizvoda()
         {
@@ -84,7 +84,7 @@ namespace FrizerskiSalon.WinUI.Proizvod
         {
             frmProizvodDetalji frm = new frmProizvodDetalji();
             frm.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }

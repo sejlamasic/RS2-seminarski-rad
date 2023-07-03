@@ -66,24 +66,20 @@ namespace FrizerskiSalon.WinUI
                 throw;
             }
         }
-        public async Task<T> Insert<T>(object request, string relativeRoute)
+        public async Task<T> Insert<T>(object request, string relativeRoute = null)
         {
             try
             {
-                //string url;
-                //if (string.IsNullOrEmpty(relativeRoute))
-                //{
-                //    url = $"{endpoint}{_route}";
-                //}
-                //else
-                //{
-                //    url = $"{endpoint}{_route}/{relativeRoute}";
-                //}
-                var url = string.IsNullOrEmpty(relativeRoute)
-    ? $"{endpoint}/{_route}"
-    : $"{endpoint}/{_route}/{relativeRoute}";
+                string url;
+                if (string.IsNullOrEmpty(relativeRoute))
+                {
+                    url = $"{endpoint}{_route}";
+                }
+                else
+                {
+                    url = $"{endpoint}{_route}/{relativeRoute}";
+                }
                 var result = await url.WithOAuthBearerToken(Token).PostJsonAsync(request).ReceiveJson<T>();
-                //var result = await url.WithOAuthBearerToken(Token).PostJsonAsync(request).ReceiveJson<T>();
                 return result;
             }
             catch (FlurlHttpException ex)
@@ -99,7 +95,7 @@ namespace FrizerskiSalon.WinUI
                 throw;
             }
         }
-        public async Task<T> Update<T>(object id, object request)
+            public async Task<T> Update<T>(object id, object request)
         {
             try
             {

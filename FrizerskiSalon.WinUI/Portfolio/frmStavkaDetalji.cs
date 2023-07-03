@@ -94,7 +94,7 @@ namespace FrizerskiSalon.WinUI.Portfolio
                     request.Slika = stream.ToArray();
                     if (_stavkePortfolium == null)
                     {
-                        await _stavkePortfoliumService.Insert<Modal.StavkePortfolium>(request, "relative/route");
+                        await _stavkePortfoliumService.Insert<Modal.StavkePortfolium>(request);
                     }
                     else
                     {

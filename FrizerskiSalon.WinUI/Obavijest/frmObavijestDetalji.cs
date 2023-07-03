@@ -78,7 +78,7 @@ namespace FrizerskiSalon.WinUI.Obavijest
                                 UposlenikId = Global.prijavljeniUposlenik.UposlenikId,
                                 Datum = DateTime.Now
                             };
-                            await _obavijestService.Insert<Modal.Obavijest>(request, "relative/route");
+                            await _obavijestService.Insert<Modal.Obavijest>(request);
                         }
                         else
                         {

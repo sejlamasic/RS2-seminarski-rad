@@ -42,22 +42,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:Pocetna(),
+      home:const Pocetna(),
       routes: {
-        '/detaljiKlijenta':(context)=>DetaljiKlijenta(),
+        '/detaljiKlijenta':(context)=>const DetaljiKlijenta(),
         '/detaljiObavijesti':(context)=>DetaljiObavijesti(),
         'detaljiProizvoda':(context)=>DetaljiProizvoda(),
         '/detaljiTermina':(context)=>DetaljiTermina(),
-        '/home':(context)=>Home(),
-        '/loading':(context)=>Loading(),
-        '/login':(context)=>Login(),
+        '/home':(context)=>const Home(),
+        '/loading':(context)=>const Loading(),
+        '/login':(context)=>const Login(),
         '/narudzbe':(context)=>Narudzba(),
         '/portfolioDetalji':(context)=>PortfolioDetalji(),
-        '/registracija':(context)=>Registracija(),
+        '/registracija':(context)=>const Registracija(),
         '/sveObavijesti':(context)=>SveObavijesti(),
         '/sviProizvodi':(context)=>SviProizvodi(),
         '/sviUposlenici':(context)=>SviUposlenici(),
-        '/zakazivanjeTermina':(context)=>ZakazivanjeTermina(),
+        '/zakazivanjeTermina':(context)=>const ZakazivanjeTermina(),
       }
     );
   }
