@@ -3,7 +3,7 @@
 //import '/model/StavkePortfolija.dart';
 import '/model/Uposlenici.dart';
 
-class Portfolio{
+class Portfolio {
   int? portfolioId;
   String? opis;
   //List<int>? slika;
@@ -16,7 +16,7 @@ class Portfolio{
     //this.slika,
     this.uposlenik,
     //this.stavkePortfolija
-});
+  });
 
   factory Portfolio.fromJson(Map<String, dynamic> json) {
     //String stringByte = json["slika"] as String;
@@ -31,10 +31,10 @@ class Portfolio{
   }
 
   Map<String, dynamic> toJson() => {
-    'portfolioId':portfolioId,
-    'opis':opis,
-    //'slika':slika,
-    'uposlenik':uposlenik!.toJson(),
-    //'stavkePortfolia':stavkePortfolija!.toJson()
-  };
+        'portfolioId': portfolioId,
+        'opis': opis,
+        //'slika':slika,
+        'uposlenik': uposlenik!.toJson(),
+        //'stavkePortfolia':stavkePortfolija!.toJson()
+      };
 }

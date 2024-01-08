@@ -38,20 +38,16 @@ public static class DbContextExtensions
         context.Spols.Add(spol3);
 
         // Zanimanje
-        var frizer1 = new Zanimanje { Naziv = "Frizer1" };
-        var frizer2 = new Zanimanje { Naziv = "Frizer2" };
-        var frizer3 = new Zanimanje { Naziv = "Frizer3" };
-        var frizer4 = new Zanimanje { Naziv ="Frizer4" };
-        var frizer5 = new Zanimanje { Naziv = "Frizer5" };
-        var frizer6 = new Zanimanje { Naziv = "Frizer6" };
-        var frizer7 = new Zanimanje { Naziv = "Frizer7" };
+        var frizer1 = new Zanimanje { Naziv = "Frizer za šišanje" };
+        var frizer2 = new Zanimanje { Naziv = "Frizer za stiliziranje kose" };
+        var frizer3 = new Zanimanje { Naziv = "Frizer za farbanje" };
+        var frizer4 = new Zanimanje { Naziv ="Frizer za pramenove" };
+
         context.Zanimanjes.Add(frizer1);
         context.Zanimanjes.Add(frizer2);
         context.Zanimanjes.Add(frizer3);
         context.Zanimanjes.Add(frizer4);
-        context.Zanimanjes.Add(frizer5);
-        context.Zanimanjes.Add(frizer6);
-        context.Zanimanjes.Add(frizer7);
+   
 
         // Klijent
         var klijent1 = new Klijent
@@ -201,7 +197,7 @@ public static class DbContextExtensions
             TipProizvoda = tipProizvoda2,
             Cijena = 10.00m,
             Opis = "Opis proizvoda ovdje.",
-            Naziv = "Proizvod 4",
+            Naziv = "Čistač četki",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x75, 0x73, 0x65, 0x72, 0x5C, 0x44, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x2E, 0x70, 0x6E, 0x67 }
         };
         var proizvod4 = new Proizvod
@@ -209,71 +205,71 @@ public static class DbContextExtensions
             TipProizvoda = tipProizvoda2,
             Cijena = 15.00m,
             Opis = "Lorem ipsum dolor sit amet, consectetur",
-            Naziv = "Proizvod 5",
+            Naziv = "Sredstvo za uklanjanje farbe",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x75, 0x73, 0x65, 0x72, 0x5C, 0x50, 0x69, 0x63, 0x74, 0x75, 0x72, 0x65, 0x73, 0x5C, 0x43, 0x61, 0x6D, 0x65, 0x72, 0x61, 0x20, 0x52, 0x6F, 0x6C, 0x6C, 0x5C, 0x57, 0x49, 0x4E, 0x5F, 0x32, 0x30, 0x32, 0x31, 0x30, 0x37, 0x30, 0x35, 0x5F, 0x31, 0x32, 0x5F, 0x31, 0x36, 0x5F, 0x34, 0x31, 0x5F, 0x50, 0x72, 0x6F, 0x2E, 0x6A, 0x70, 0x67 }
         };
         var proizvod5 = new Proizvod
         {
             TipProizvoda = tipProizvoda1003,
             Cijena = 50.00m,
-            Opis = "Za ovaj komad nakita dostupno je više bo",
-            Naziv = "Proizvod 6",
+            Opis = "Najbolji regeneratori za kosu",
+            Naziv = "Regenerator za kosu Kerastase",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x2E, 0x70, 0x6E, 0x67 }
         };
         var proizvod6 = new Proizvod
         {
             TipProizvoda = tipProizvoda1002,
             Cijena = 2.00m,
-            Opis = "Na zalihi su veličine od 0.8 mm do 1.6mm",
-            Naziv = "Proizvod 1",
+            Opis = "Najbolji šamponi za svaki tip kose",
+            Naziv = "Šampon za kosu Kerastase",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x2E, 0x70, 0x6E, 0x67 }
         };
         var proizvod7 = new Proizvod
         {
             TipProizvoda = tipProizvoda1005,
             Cijena = 2.00m,
-            Opis = "Ček, šta?!",
-            Naziv = "Proizvod 2",
+            Opis = "Farba za plavuše",
+            Naziv = "Farba za kosu F12345",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x2E, 0x70, 0x6E, 0x67 }
         };
         var proizvod8 = new Proizvod
         {
             TipProizvoda = tipProizvoda1,
             Cijena = 5.00m,
-            Opis = "Multipurpose. Kuglica 5 mm.",
-            Naziv = "Proizvod 3",
+            Opis = "Češalj za mokru kosu",
+            Naziv = "Macadamia četka za kosu",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x2E, 0x70, 0x6E, 0x67 }
         };
         var proizvod10 = new Proizvod
         {
             TipProizvoda = tipProizvoda1,
             Cijena = 3.00m,
-            Opis = "Multipurpose nakit od hirurškog čelika.",
-            Naziv = "Proizvod 7",
+            Opis = "Najkvalitetnija četka za kosu",
+            Naziv = "Tangle teezer",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x5C, 0x75, 0x32, 0x2E, 0x6A, 0x70, 0x67 }
         };
         var proizvod11 = new Proizvod
         {
             TipProizvoda = tipProizvoda1003,
             Cijena = 7.00m,
-            Opis = "Dostupno s promjerima od 6 mm do 12 mm.",
-            Naziv = "Proizvod 8",
+            Opis = "Najpogodniji za oštećenu,suhu kosu",
+            Naziv = "Regenerator za kosu syoss",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x5C, 0x65, 0x33, 0x2E, 0x6A, 0x70, 0x67 }
         };
         var proizvod12 = new Proizvod
         {
             TipProizvoda = tipProizvoda1003,
             Cijena = 3.00m,
-            Opis = "Multipurpose. Kuglica 5 mm.",
-            Naziv = "Proizvod 9",
+            Opis = "Najpogodniji za tanku kosu",
+            Naziv = "Regenerator Elseve",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x5C, 0x75, 0x31, 0x2E, 0x6A, 0x70, 0x67 }
         };
         var proizvod13 = new Proizvod
         {
             TipProizvoda = tipProizvoda1004,
             Cijena = 23.00m,
-            Opis = "Od hirurškog čelika pozlaćen roze zlatom",
-            Naziv = "Proizvod 10",
+            Opis = "Najkvalitetnije maske za kosu",
+            Naziv = "Maska za kosu Kerastase ",
             Slika = new byte[] { 0x43, 0x3A, 0x5C, 0x55, 0x73, 0x65, 0x72, 0x73, 0x5C, 0x64, 0x65, 0x73, 0x6B, 0x74, 0x6F, 0x70, 0x5C, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x73, 0x5C, 0x6F, 0x32, 0x2E, 0x6A, 0x70, 0x67 }
         };
         var proizvod14 = new Proizvod
@@ -511,7 +507,7 @@ public static class DbContextExtensions
         };
         var uposlenik5 = new Uposlenik
         {
-            Zanimanje = frizer5,
+            Zanimanje = frizer2,
             Spol = spol1,
             Ime = "Nigihayami",
             Prezime = "Kohakunushi",
@@ -524,7 +520,7 @@ public static class DbContextExtensions
         };
         var uposlenik7 = new Uposlenik
         {
-            Zanimanje = frizer6,
+            Zanimanje = frizer3,
             Spol = spol1,
             Ime = "Nigihayami",
             Prezime = "Kohakunushi",
@@ -537,7 +533,7 @@ public static class DbContextExtensions
         };
         var uposlenik8 = new Uposlenik
         {
-            Zanimanje = frizer7,
+            Zanimanje = frizer4,
             Spol = spol2,
             Ime = "Chihiro",
             Prezime = "Sen",
@@ -571,13 +567,13 @@ public static class DbContextExtensions
             {
                 Uposlenik = uposlenik1,
                 Datum = new DateTime(2022, 2, 2),
-                Detalji = "Do datuma 02/02/2022 16:42:30 ste imali 0 termina, od kojih je 0 otkazano."
+                Detalji = "Do datuma 02/02/2022 16:42:30 ste imali 7 termina, od kojih je 0 otkazano."
             },
             new Izvjestaj
             {
                 Uposlenik = uposlenik1,
                 Datum = new DateTime(2022, 5, 27),
-                Detalji = "Od početka rada do datuma 27/05/2022 12:14:10 svi uposlenici su imali ukupno 1 termina, od kojih je 0 otkazano."
+                Detalji = "Od početka rada do datuma 27/05/2022 12:14:10 svi uposlenici su imali ukupno 10 termina, od kojih je 1 otkazano."
             },
             new Izvjestaj
             {
@@ -589,13 +585,13 @@ public static class DbContextExtensions
             {
                 Uposlenik = uposlenik1,
                 Datum = new DateTime(2022, 5, 27),
-                Detalji = "Od početka rada do datuma 27/05/2022 12:18:03 Vi ste imali 0 termina, od kojih je 0 otkazano."
+                Detalji = "Od početka rada do datuma 27/05/2022 12:18:03 Vi ste imali 10 termina, od kojih je 2 otkazano."
             },
             new Izvjestaj
             {
                 Uposlenik = uposlenik1,
                 Datum = new DateTime(2022, 5, 27),
-                Detalji = "Od početka rada do datuma 27/05/2022 12:18:08 svi uposlenici su imali ukupno 1 termina, od kojih je 0 otkazano."
+                Detalji = "Od početka rada do datuma 27/05/2022 12:18:08 svi uposlenici su imali ukupno 12 termina, od kojih je 0 otkazano."
             },
             new Izvjestaj
             {
@@ -612,7 +608,7 @@ public static class DbContextExtensions
             new Izvjestaj
             {
                 Uposlenik = uposlenik2,
-                Datum = new DateTime(2022, 8, 31),
+                Datum = new DateTime(2023, 8, 12),
                 Detalji = "Od početka ove godine do datuma 08/31/2022 19:12:47 Vi ste imali 3 termina, od kojih je 3 otkazano."
             },
             new Izvjestaj

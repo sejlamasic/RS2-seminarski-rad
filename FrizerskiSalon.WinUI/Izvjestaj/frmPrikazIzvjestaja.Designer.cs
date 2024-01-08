@@ -68,7 +68,7 @@ namespace FrizerskiSalon.WinUI.Izvjestaj
             this.groupBox1.Controls.Add(this.dgvIzvjestaj);
             this.groupBox1.Location = new System.Drawing.Point(16, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(699, 279);
+            this.groupBox1.Size = new System.Drawing.Size(1000, 739);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Izvještaji";

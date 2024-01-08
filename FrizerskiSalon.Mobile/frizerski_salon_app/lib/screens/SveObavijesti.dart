@@ -36,9 +36,10 @@ class _SveObavijestiState extends State<SveObavijesti> {
               );
             } else {
               return ListView(
-                children:
-                snapshot.data.map<Widget>((e)=>ObavijestiWidget(e)).toList(),
-          );
+                children: snapshot.data
+                    .map<Widget>((e) => ObavijestiWidget(e))
+                    .toList(),
+              );
             }
           }
         });

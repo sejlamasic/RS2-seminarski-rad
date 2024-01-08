@@ -15,40 +15,42 @@ class Klijenti {
   int? spolId;
 
   Klijenti(
-  {this.klijentId,
-  this.ime,
-  this.prezime,
-  this.datumRodjenja,
-  this.email,
-  this.telefon,
-  this.korisnickoIme,
-  this.lozinka,
-  this.spolId});
+      {this.klijentId,
+      this.ime,
+      this.prezime,
+      this.datumRodjenja,
+      this.email,
+      this.telefon,
+      this.korisnickoIme,
+      this.lozinka,
+      this.spolId});
 
   factory Klijenti.fromJson(Map<String, dynamic> json) {
     return Klijenti(
         //klijentId: json['klijentid'] as int,
         ime: json['ime'] as String,
         prezime: json['prezime'] as String,
-        datumRodjenja: DateFormat('MM/dd/yyyy HH:mm:ss').parse(json['datumRodjenja'].toString()),
+        datumRodjenja: DateFormat('MM/dd/yyyy HH:mm:ss')
+            .parse(json['datumRodjenja'].toString()),
         email: json['email'] as String,
         telefon: json['telefon'] as String,
         korisnickoIme: json['korisnickoIme'] as String,
         //lozinka: json['lozinka'] as String,
         spolId: json['spolId'] as int);
-        //spol: Spolovi.fromJson(json['spol']));
+    //spol: Spolovi.fromJson(json['spol']));
   }
 
   Map<String, dynamic> toJson() => {
-    "id": klijentId,
-    "ime": ime,
-    "prezime": prezime,
-    "datumRodjenja": datumRodjenja == null ? null : datumRodjenja!.toIso8601String(),
-    "email": email,
-    "telefon": telefon,
-    "korisnickoIme": korisnickoIme,
-    "lozinka":lozinka,
-    "spolId":spolId
-    //"spol": spol!.toJson()
-  };
+        "id": klijentId,
+        "ime": ime,
+        "prezime": prezime,
+        "datumRodjenja":
+            datumRodjenja == null ? null : datumRodjenja!.toIso8601String(),
+        "email": email,
+        "telefon": telefon,
+        "korisnickoIme": korisnickoIme,
+        "lozinka": lozinka,
+        "spolId": spolId
+        //"spol": spol!.toJson()
+      };
 }

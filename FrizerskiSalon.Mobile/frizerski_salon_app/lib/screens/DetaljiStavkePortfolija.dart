@@ -21,13 +21,12 @@ class DetaljiStavkePortfolija extends StatelessWidget {
       body: Column(
         children: [
           Center(
-            child: Image(
-                height: 300,
-                width: 300,
-                image: /*Image.memory(Uint8List.fromList(stavka!.slika!)).image, 
+              child: Image(
+                  height: 300,
+                  width: 300,
+                  image: /*Image.memory(Uint8List.fromList(stavka!.slika!)).image, 
                 errorBuilder: (context, error, stackTrace) => Image.asset("assets/images/error.jpg"),*/
-                AssetImage('assets/images/imgplaceholder.jpg')
-                )),
+                      AssetImage('assets/images/imgplaceholder.jpg'))),
           Text(
             "Datum objave: ${DateFormat('dd/MM/yyyy').format(stavka!.datum!)}",
             style: TextStyle(fontSize: 20),

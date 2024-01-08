@@ -5,16 +5,15 @@ import '/providers/apiservice.dart';
 import 'Home.dart';
 import 'Pocetna.dart';
 
-
 class DetaljiKlijenta extends StatefulWidget {
   const DetaljiKlijenta({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _DetaljiKlijentaState createState() => _DetaljiKlijentaState();
 }
 
 class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
-
   Klijenti korisnik = Klijenti();
   @override
   Widget build(BuildContext context) {
@@ -24,42 +23,43 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     );
   }
 
-    dynamic response;
-    TextEditingController imeController = TextEditingController();
-    TextEditingController prezimeController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController dtpDatumRodjenjaController = TextEditingController();
-    TextEditingController korisnickoImeController = TextEditingController();
-    TextEditingController lozinkaController = TextEditingController();
-    DateTime _odabraniDatumRodjenja = DateTime.now();
+  dynamic response;
+  TextEditingController imeController = TextEditingController();
+  TextEditingController prezimeController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController dtpDatumRodjenjaController = TextEditingController();
+  TextEditingController korisnickoImeController = TextEditingController();
+  TextEditingController lozinkaController = TextEditingController();
+  DateTime _odabraniDatumRodjenja = DateTime.now();
 
   Widget body() {
-    const _obaveznoPolje = "Polje je obavezno";
+    const obaveznoPolje = "Polje je obavezno";
     TextStyle style = const TextStyle(fontSize: 18.0);
     List<DropdownMenuItem> spolovi = [
       DropdownMenuItem(
+          value: 1,
           child: Text(
             "Muški",
             style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
-          ),
-          value: 1),
+          )),
       DropdownMenuItem(
+          value: 2,
           child: Text(
             "Ženski",
             style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
-          ),
-          value: 2),
+          )),
       DropdownMenuItem(
+          value: 3,
           child: Text(
             "Ostalo",
             style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
-          ),
-          value: 3),
+          )),
     ];
-    int? _odabraniSpol;
+    int? odabraniSpol;
 
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
+    // ignore: no_leading_underscores_for_local_identifiers
     Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
           context: context,
@@ -77,10 +77,11 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     }
 
     Future<void> sendRequest(Map<String, dynamic> request) async {
-      response = await APIService.Put("Klijent", APIService.klijentId!,
-          jsonEncode(request));
+      response = await APIService.Put(
+          "Klijent", APIService.klijentId!, jsonEncode(request));
     }
 
+    // ignore: no_leading_underscores_for_local_identifiers
     Future<void> _showDialog(String text, [dismissable = true]) async {
       return showDialog<void>(
         barrierDismissible: dismissable,
@@ -108,7 +109,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
 
     final txtIme = TextFormField(
       validator: (value) {
-        return value == null || value.isEmpty ? _obaveznoPolje : null;
+        return value == null || value.isEmpty ? obaveznoPolje : null;
       },
       controller: imeController,
       obscureText: false,
@@ -121,7 +122,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     );
     final txtPrezime = TextFormField(
       validator: (value) {
-        return value == null || value.isEmpty ? _obaveznoPolje : null;
+        return value == null || value.isEmpty ? obaveznoPolje : null;
       },
       controller: prezimeController,
       obscureText: false,
@@ -136,7 +137,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     final txtMail = TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return _obaveznoPolje;
+          return obaveznoPolje;
         } else {
           return null;
         }
@@ -155,7 +156,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
       child: IgnorePointer(
         child: TextFormField(
           validator: (value) {
-            return value == null || value.isEmpty ? _obaveznoPolje : null;
+            return value == null || value.isEmpty ? obaveznoPolje : null;
           },
           controller: dtpDatumRodjenjaController,
           obscureText: false,
@@ -174,7 +175,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
 
     final txtKorisnickoIme = TextFormField(
       validator: (value) {
-        return value == null || value.isEmpty ? _obaveznoPolje : null;
+        return value == null || value.isEmpty ? obaveznoPolje : null;
       },
       controller: korisnickoImeController,
       obscureText: false,
@@ -187,9 +188,9 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     );
     final txtLozinka = TextFormField(
       validator: (value) {
-        if (value==null || value.isEmpty)
+        if (value == null || value.isEmpty) {
           return "Obavezno polje!";
-        else if (value != null && value.isNotEmpty) {
+        } else if (value.isNotEmpty) {
           if (value.length < 5) {
             return "Minimalna dužina 5!";
           } else if (!value.contains(RegExp(r'[0-9]')) ||
@@ -199,6 +200,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
             return null;
           }
         }
+        return null;
       },
       controller: lozinkaController,
       obscureText: true,
@@ -237,21 +239,22 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-          if (_formKey.currentState!.validate()) {
+          if (formKey.currentState!.validate()) {
             response = null;
             Map<String, dynamic> request = {
-            'ime': imeController.text,
-            'prezime': prezimeController.text,
-            'datumRodjenja': _odabraniDatumRodjenja.toIso8601String(),
-            'email': emailController.text,
-            'telefon': korisnik.telefon,
-            'korisnickoIme': korisnickoImeController.text,
-            'spolId': _odabraniSpol,
-            'lozinka': lozinkaController.text,
-            'potvrdiLozinku': lozinkaController.text,
+              'ime': imeController.text,
+              'prezime': prezimeController.text,
+              'datumRodjenja': _odabraniDatumRodjenja.toIso8601String(),
+              'email': emailController.text,
+              'telefon': korisnik.telefon,
+              'korisnickoIme': korisnickoImeController.text,
+              'spolId': odabraniSpol,
+              'lozinka': lozinkaController.text,
+              'potvrdiLozinku': lozinkaController.text,
             };
 
-            if (lozinkaController.text == null || lozinkaController.text.isEmpty) {
+            if (lozinkaController.text.isEmpty) {
+              // ignore: avoid_print
               print("nedostaje lozinka ok");
             }
 
@@ -273,7 +276,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     Widget ddSpol() {
       return DropdownButtonFormField<dynamic>(
         validator: (value) {
-          return value == null /*|| value.isEmpty*/ ? _obaveznoPolje : null;
+          return value == null /*|| value.isEmpty*/ ? obaveznoPolje : null;
         },
         hint: Text(
           'Spol',
@@ -282,9 +285,9 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
         isExpanded: true,
         items: spolovi,
         onChanged: (newVal) {
-          _odabraniSpol = newVal;
+          odabraniSpol = newVal;
         },
-        value: _odabraniSpol,
+        value: odabraniSpol,
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             border:
@@ -303,82 +306,90 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
           imeController.text = korisnik.ime!;
           prezimeController.text = korisnik.prezime!;
           emailController.text = korisnik.email!;
-          if(_odabraniDatumRodjenja.difference(DateTime.now()).inDays==0)
-            _odabraniDatumRodjenja=korisnik.datumRodjenja!;
+          if (_odabraniDatumRodjenja.difference(DateTime.now()).inDays == 0) {
+            _odabraniDatumRodjenja = korisnik.datumRodjenja!;
+          }
           dtpDatumRodjenjaController.text =
               "${_odabraniDatumRodjenja.toLocal()}".split(' ')[0];
-          _odabraniSpol = korisnik.spolId!;
+          odabraniSpol = korisnik.spolId!;
           korisnickoImeController.text = korisnik.korisnickoIme!;
           //lozinkaController.text = korisnik.lozinka!;
           imeController.text = korisnik.ime!;
 
-          return SingleChildScrollView(
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(36.0),
+         return SingleChildScrollView(
+      child: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(36.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Form(
+                key: formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Form(
-                        key: _formKey,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              //Ime i prezime
-                              Row(
-                                children: [
-                                  Flexible(child: txtIme),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Flexible(child: txtPrezime)
-                                ],
-                              ),
-                              const SizedBox(height: 5.0),
-                              txtMail,
-                              const SizedBox(height: 5.0),
-                              //Datum rodjenja i spol
-                              Row(
-                                children: [
-                                  Flexible(child: dtpDatumRodjenja),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Flexible(child: ddSpol())
-                                ],
-                              ),
-                              const SizedBox(height: 5.0),
-                              //Korisnicko ime i lozinka
-                              Row(
-                                children: [
-                                  Flexible(child: txtKorisnickoIme),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Flexible(child: txtLozinka)
-                                ],
-                              ),
-                              const SizedBox(height: 15.0),
-                              //Buttoni
-                              Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    btnOdjava,
-                                    const SizedBox(width: 15.0),
-                                    Expanded(child: btnSpremiIzmjene)
-                                  ]),
-                            ]),
+                  children: [
+                    // Ime
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: txtIme,
+                    ),
+                    // Prezime
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: txtPrezime,
+                    ),
+                    // Email
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: txtMail,
+                    ),
+                    // Datum rođenja i Spol
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Row(
+                        children: [
+                          Flexible(child: dtpDatumRodjenja),
+                          const SizedBox(width: 5.0),
+                          Flexible(child: ddSpol()),
+                        ],
                       ),
-                    ]),
+                    ),
+                    // Korisničko ime
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: txtKorisnickoIme,
+                    ),
+                    // Lozinka
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: txtLozinka,
+                    ),
+                    // Buttoni
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: btnOdjava,
+                          ),
+                          const SizedBox(width: 15.0),
+                          Expanded(
+                            child: btnSpremiIzmjene,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        }
+            ],
+          ),
+        ),
+      ),
+    );
+  }
         // else {
         //   return const Center(
         //     child: Text("Došlo je do greške!"),

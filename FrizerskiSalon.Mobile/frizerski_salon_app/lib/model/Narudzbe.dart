@@ -3,25 +3,25 @@ import '/model/StavkeNarudzbe.dart';
 
 import 'Klijenti.dart';
 
-class Narudzbe{
+class Narudzbe {
   int? narudzbaId;
   int? klijentId;
   DateTime? datum;
   int? ukupniIznos;
-  bool? isIsporucena;        
+  bool? isIsporucena;
   bool? IsPlacena;
   Klijenti? klijent;
   List<StavkeNarudzbe?>? stavke;
 
-  Narudzbe({
-    this.narudzbaId, 
-    this.klijentId,
-    this.datum, 
-    this.ukupniIznos, 
-    this.isIsporucena, 
-    this.IsPlacena,
-    this.klijent,
-    this.stavke});
+  Narudzbe(
+      {this.narudzbaId,
+      this.klijentId,
+      this.datum,
+      this.ukupniIznos,
+      this.isIsporucena,
+      this.IsPlacena,
+      this.klijent,
+      this.stavke});
 
   factory Narudzbe.fromJson(Map<String, dynamic> json) {
     return Narudzbe(
@@ -37,10 +37,10 @@ class Narudzbe{
   }
 
   Map<String, dynamic> toJson() => {
-    'narudzbaId':narudzbaId,
-    'datum':datum == null ? null : datum!.toIso8601String(),
-    'ukupniIznos':ukupniIznos,
-    'isIsporucena':isIsporucena,
-    'isPlacena':IsPlacena
-  };
+        'narudzbaId': narudzbaId,
+        'datum': datum == null ? null : datum!.toIso8601String(),
+        'ukupniIznos': ukupniIznos,
+        'isIsporucena': isIsporucena,
+        'isPlacena': IsPlacena
+      };
 }

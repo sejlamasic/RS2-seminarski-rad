@@ -1,10 +1,10 @@
-class Spolovi{
+class Spolovi {
   int? spolId;
   String? naziv;
 
   Spolovi({this.spolId, this.naziv});
 
-  factory Spolovi.fromJson(Map<String, dynamic> json){
+  factory Spolovi.fromJson(Map<String, dynamic> json) {
     return Spolovi(
       spolId: int.parse(json["spolId"].toString()),
       naziv: json["naziv"],
@@ -12,7 +12,7 @@ class Spolovi{
   }
 
   Map<String, dynamic> toJson() => {
-    "spolId":spolId,
-    "naziv":naziv,
-  };
+        "spolId": spolId,
+        "naziv": naziv,
+      };
 }

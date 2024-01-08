@@ -26,14 +26,13 @@ namespace FrizerskiSalon.WinUI.Klijent
                 {
                     Ime = txtIme.Text,
                     Prezime = txtPrezime.Text,
-                    SpolId = (int)cmbSpol.SelectedValue
                 };
                 var list = await _klijentService.Get<IList<Modal.Klijent>>(search);
                 dgvKlijenti.DataSource = null;
                 dgvKlijenti.DataSource = list;
                 dgvKlijenti.Columns[6].Visible = false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -44,11 +43,9 @@ namespace FrizerskiSalon.WinUI.Klijent
             try
             {
                 await LoadSpol();
-                dgvKlijenti.DataSource = null;
-                dgvKlijenti.DataSource = await _klijentService.Get<IList<Modal.Klijent>>(null);
-                dgvKlijenti.Columns[6].Visible = false;
+                await LoadAllKlijenti();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -68,5 +65,37 @@ namespace FrizerskiSalon.WinUI.Klijent
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private async void btnOcisti_Click(object sender, EventArgs e)
+        {
+            txtIme.Text = string.Empty;
+            txtPrezime.Text = string.Empty;
+            cmbSpol.SelectedIndex = -1; // Clear the selected gender
+
+            try
+            {
+                await LoadAllKlijenti();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async Task LoadAllKlijenti()
+        {
+            try
+            {
+                var list = await _klijentService.Get<IList<Modal.Klijent>>(null);
+                dgvKlijenti.DataSource = null;
+                dgvKlijenti.DataSource = list;
+                dgvKlijenti.Columns[6].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

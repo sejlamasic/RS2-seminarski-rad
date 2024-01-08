@@ -1,11 +1,8 @@
-class Zanimanja{
+class Zanimanja {
   int zanimanjeId;
   String naziv;
 
-  Zanimanja({
-    required this.zanimanjeId,
-    required this.naziv
-});
+  Zanimanja({required this.zanimanjeId, required this.naziv});
 
   factory Zanimanja.fromJson(Map<String, dynamic> json) {
     return Zanimanja(
@@ -15,7 +12,7 @@ class Zanimanja{
   }
 
   Map<String, dynamic> toJson() => {
-    "zanimanjeId":zanimanjeId,
-    "naziv":naziv,
-  };
+        "zanimanjeId": zanimanjeId,
+        "naziv": naziv,
+      };
 }

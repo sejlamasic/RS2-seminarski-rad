@@ -29,302 +29,339 @@ namespace FrizerskiSalon.WinUI.LoginRegistracija
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.txtIme = new System.Windows.Forms.TextBox();
-            this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
-            this.txtPrezime = new System.Windows.Forms.TextBox();
-            this.txtPutanjaDoSlike = new System.Windows.Forms.TextBox();
-            this.txtPotvrdaLozinke = new System.Windows.Forms.TextBox();
-            this.txtLozinka = new System.Windows.Forms.TextBox();
-            this.cmbSpol = new System.Windows.Forms.ComboBox();
-            this.cmbZanimanje = new System.Windows.Forms.ComboBox();
-            this.btnRegistracija = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btnUcitajSliku = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtTelefon = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.err = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ofdSlika = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            txtIme = new TextBox();
+            txtKorisnickoIme = new TextBox();
+            txtPrezime = new TextBox();
+            txtPutanjaDoSlike = new TextBox();
+            txtPotvrdaLozinke = new TextBox();
+            txtLozinka = new TextBox();
+            cmbSpol = new ComboBox();
+            cmbZanimanje = new ComboBox();
+            btnRegistracija = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            btnUcitajSliku = new Button();
+            label9 = new Label();
+            label10 = new Label();
+            txtTelefon = new TextBox();
+            txtEmail = new TextBox();
+            err = new ErrorProvider(components);
+            ofdSlika = new OpenFileDialog();
+            panel1 = new Panel();
+            button1 = new Button();
+            ((System.ComponentModel.ISupportInitialize)err).BeginInit();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // txtIme
             // 
-            this.txtIme.Location = new System.Drawing.Point(151, 18);
-            this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(236, 22);
-            this.txtIme.TabIndex = 0;
+            txtIme.Location = new Point(189, 28);
+            txtIme.Margin = new Padding(4, 5, 4, 5);
+            txtIme.Name = "txtIme";
+            txtIme.Size = new Size(294, 31);
+            txtIme.TabIndex = 0;
             // 
             // txtKorisnickoIme
             // 
-            this.txtKorisnickoIme.Location = new System.Drawing.Point(151, 106);
-            this.txtKorisnickoIme.Name = "txtKorisnickoIme";
-            this.txtKorisnickoIme.Size = new System.Drawing.Size(236, 22);
-            this.txtKorisnickoIme.TabIndex = 1;
+            txtKorisnickoIme.Location = new Point(189, 166);
+            txtKorisnickoIme.Margin = new Padding(4, 5, 4, 5);
+            txtKorisnickoIme.Name = "txtKorisnickoIme";
+            txtKorisnickoIme.Size = new Size(294, 31);
+            txtKorisnickoIme.TabIndex = 1;
             // 
             // txtPrezime
             // 
-            this.txtPrezime.Location = new System.Drawing.Point(151, 60);
-            this.txtPrezime.Name = "txtPrezime";
-            this.txtPrezime.Size = new System.Drawing.Size(236, 22);
-            this.txtPrezime.TabIndex = 2;
+            txtPrezime.Location = new Point(189, 94);
+            txtPrezime.Margin = new Padding(4, 5, 4, 5);
+            txtPrezime.Name = "txtPrezime";
+            txtPrezime.Size = new Size(294, 31);
+            txtPrezime.TabIndex = 2;
             // 
             // txtPutanjaDoSlike
             // 
-            this.txtPutanjaDoSlike.Location = new System.Drawing.Point(553, 196);
-            this.txtPutanjaDoSlike.Name = "txtPutanjaDoSlike";
-            this.txtPutanjaDoSlike.Size = new System.Drawing.Size(176, 22);
-            this.txtPutanjaDoSlike.TabIndex = 3;
+            txtPutanjaDoSlike.Location = new Point(691, 306);
+            txtPutanjaDoSlike.Margin = new Padding(4, 5, 4, 5);
+            txtPutanjaDoSlike.Name = "txtPutanjaDoSlike";
+            txtPutanjaDoSlike.Size = new Size(219, 31);
+            txtPutanjaDoSlike.TabIndex = 3;
             // 
             // txtPotvrdaLozinke
             // 
-            this.txtPotvrdaLozinke.Location = new System.Drawing.Point(151, 196);
-            this.txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
-            this.txtPotvrdaLozinke.PasswordChar = '*';
-            this.txtPotvrdaLozinke.Size = new System.Drawing.Size(236, 22);
-            this.txtPotvrdaLozinke.TabIndex = 4;
+            txtPotvrdaLozinke.Location = new Point(189, 306);
+            txtPotvrdaLozinke.Margin = new Padding(4, 5, 4, 5);
+            txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
+            txtPotvrdaLozinke.PasswordChar = '*';
+            txtPotvrdaLozinke.Size = new Size(294, 31);
+            txtPotvrdaLozinke.TabIndex = 4;
             // 
             // txtLozinka
             // 
-            this.txtLozinka.Location = new System.Drawing.Point(151, 152);
-            this.txtLozinka.Name = "txtLozinka";
-            this.txtLozinka.PasswordChar = '*';
-            this.txtLozinka.Size = new System.Drawing.Size(236, 22);
-            this.txtLozinka.TabIndex = 5;
+            txtLozinka.Location = new Point(189, 238);
+            txtLozinka.Margin = new Padding(4, 5, 4, 5);
+            txtLozinka.Name = "txtLozinka";
+            txtLozinka.PasswordChar = '*';
+            txtLozinka.Size = new Size(294, 31);
+            txtLozinka.TabIndex = 5;
             // 
             // cmbSpol
             // 
-            this.cmbSpol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSpol.FormattingEnabled = true;
-            this.cmbSpol.Location = new System.Drawing.Point(553, 101);
-            this.cmbSpol.Name = "cmbSpol";
-            this.cmbSpol.Size = new System.Drawing.Size(236, 24);
-            this.cmbSpol.TabIndex = 6;
+            cmbSpol.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSpol.FormattingEnabled = true;
+            cmbSpol.Location = new Point(691, 158);
+            cmbSpol.Margin = new Padding(4, 5, 4, 5);
+            cmbSpol.Name = "cmbSpol";
+            cmbSpol.Size = new Size(294, 33);
+            cmbSpol.TabIndex = 6;
             // 
             // cmbZanimanje
             // 
-            this.cmbZanimanje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbZanimanje.FormattingEnabled = true;
-            this.cmbZanimanje.Location = new System.Drawing.Point(553, 147);
-            this.cmbZanimanje.Name = "cmbZanimanje";
-            this.cmbZanimanje.Size = new System.Drawing.Size(236, 24);
-            this.cmbZanimanje.TabIndex = 7;
+            cmbZanimanje.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbZanimanje.FormattingEnabled = true;
+            cmbZanimanje.Location = new Point(691, 230);
+            cmbZanimanje.Margin = new Padding(4, 5, 4, 5);
+            cmbZanimanje.Name = "cmbZanimanje";
+            cmbZanimanje.Size = new Size(294, 33);
+            cmbZanimanje.TabIndex = 7;
             // 
             // btnRegistracija
             // 
-            this.btnRegistracija.Location = new System.Drawing.Point(216, 256);
-            this.btnRegistracija.Name = "btnRegistracija";
-            this.btnRegistracija.Size = new System.Drawing.Size(365, 34);
-            this.btnRegistracija.TabIndex = 8;
-            this.btnRegistracija.Text = "Registruj se";
-            this.btnRegistracija.UseVisualStyleBackColor = true;
-            this.btnRegistracija.Click += new System.EventHandler(this.btnRegistracija_Click);
+            btnRegistracija.Location = new Point(488, 397);
+            btnRegistracija.Margin = new Padding(4, 5, 4, 5);
+            btnRegistracija.Name = "btnRegistracija";
+            btnRegistracija.Size = new Size(456, 53);
+            btnRegistracija.TabIndex = 8;
+            btnRegistracija.Text = "Registruj se";
+            btnRegistracija.UseVisualStyleBackColor = true;
+            btnRegistracija.Click += btnRegistracija_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 17);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Ime";
+            label1.AutoSize = true;
+            label1.Location = new Point(28, 28);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(42, 25);
+            label1.TabIndex = 9;
+            label1.Text = "Ime";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 17);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Prezime";
+            label2.AutoSize = true;
+            label2.Location = new Point(28, 98);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(74, 25);
+            label2.TabIndex = 10;
+            label2.Text = "Prezime";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 111);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 17);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Korisničko ime";
+            label3.AutoSize = true;
+            label3.Location = new Point(28, 173);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(127, 25);
+            label3.TabIndex = 11;
+            label3.Text = "Korisničko ime";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 157);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 17);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Lozinka";
+            label4.AutoSize = true;
+            label4.Location = new Point(28, 245);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(71, 25);
+            label4.TabIndex = 12;
+            label4.Text = "Lozinka";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 201);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 17);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Potvrdite lozinku";
+            label5.AutoSize = true;
+            label5.Location = new Point(28, 314);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(144, 25);
+            label5.TabIndex = 13;
+            label5.Text = "Potvrdite lozinku";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(424, 201);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 17);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Fotografija";
+            label6.AutoSize = true;
+            label6.Location = new Point(530, 314);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(98, 25);
+            label6.TabIndex = 14;
+            label6.Text = "Fotografija";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(424, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 17);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Spol";
+            label7.AutoSize = true;
+            label7.Location = new Point(530, 169);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(48, 25);
+            label7.TabIndex = 15;
+            label7.Text = "Spol";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(424, 154);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 17);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Zanimanje";
+            label8.AutoSize = true;
+            label8.Location = new Point(530, 241);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(93, 25);
+            label8.TabIndex = 16;
+            label8.Text = "Zanimanje";
             // 
             // btnUcitajSliku
             // 
-            this.btnUcitajSliku.Location = new System.Drawing.Point(735, 198);
-            this.btnUcitajSliku.Name = "btnUcitajSliku";
-            this.btnUcitajSliku.Size = new System.Drawing.Size(54, 23);
-            this.btnUcitajSliku.TabIndex = 17;
-            this.btnUcitajSliku.Text = "...";
-            this.btnUcitajSliku.UseVisualStyleBackColor = true;
-            this.btnUcitajSliku.Click += new System.EventHandler(this.btnUcitajSliku_Click);
+            btnUcitajSliku.Location = new Point(919, 309);
+            btnUcitajSliku.Margin = new Padding(4, 5, 4, 5);
+            btnUcitajSliku.Name = "btnUcitajSliku";
+            btnUcitajSliku.Size = new Size(68, 36);
+            btnUcitajSliku.TabIndex = 17;
+            btnUcitajSliku.Text = "...";
+            btnUcitajSliku.UseVisualStyleBackColor = true;
+            btnUcitajSliku.Click += btnUcitajSliku_Click;
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(424, 63);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 17);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "Telefon";
+            label9.AutoSize = true;
+            label9.Location = new Point(530, 98);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(68, 25);
+            label9.TabIndex = 21;
+            label9.Text = "Telefon";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(424, 18);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 17);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Email";
+            label10.AutoSize = true;
+            label10.Location = new Point(530, 28);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(54, 25);
+            label10.TabIndex = 20;
+            label10.Text = "Email";
             // 
             // txtTelefon
             // 
-            this.txtTelefon.Location = new System.Drawing.Point(553, 60);
-            this.txtTelefon.Name = "txtTelefon";
-            this.txtTelefon.Size = new System.Drawing.Size(236, 22);
-            this.txtTelefon.TabIndex = 19;
+            txtTelefon.Location = new Point(691, 94);
+            txtTelefon.Margin = new Padding(4, 5, 4, 5);
+            txtTelefon.Name = "txtTelefon";
+            txtTelefon.Size = new Size(294, 31);
+            txtTelefon.TabIndex = 19;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(553, 18);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(236, 22);
-            this.txtEmail.TabIndex = 18;
+            txtEmail.Location = new Point(691, 28);
+            txtEmail.Margin = new Padding(4, 5, 4, 5);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(294, 31);
+            txtEmail.TabIndex = 18;
             // 
             // err
             // 
-            this.err.ContainerControl = this;
+            err.ContainerControl = this;
             // 
             // ofdSlika
             // 
-            this.ofdSlika.FileName = "openFileDialog1";
+            ofdSlika.FileName = "openFileDialog1";
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.txtIme);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.txtKorisnickoIme);
-            this.panel1.Controls.Add(this.txtTelefon);
-            this.panel1.Controls.Add(this.txtPrezime);
-            this.panel1.Controls.Add(this.txtEmail);
-            this.panel1.Controls.Add(this.txtPutanjaDoSlike);
-            this.panel1.Controls.Add(this.btnUcitajSliku);
-            this.panel1.Controls.Add(this.txtPotvrdaLozinke);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.txtLozinka);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.cmbSpol);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.cmbZanimanje);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.btnRegistracija);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(803, 299);
-            this.panel1.TabIndex = 22;
+            panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(txtIme);
+            panel1.Controls.Add(label10);
+            panel1.Controls.Add(txtKorisnickoIme);
+            panel1.Controls.Add(txtTelefon);
+            panel1.Controls.Add(txtPrezime);
+            panel1.Controls.Add(txtEmail);
+            panel1.Controls.Add(txtPutanjaDoSlike);
+            panel1.Controls.Add(btnUcitajSliku);
+            panel1.Controls.Add(txtPotvrdaLozinke);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(txtLozinka);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(cmbSpol);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(cmbZanimanje);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(btnRegistracija);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label3);
+            panel1.Location = new Point(15, 19);
+            panel1.Margin = new Padding(4, 5, 4, 5);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1004, 467);
+            panel1.TabIndex = 22;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(24, 397);
+            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(275, 53);
+            button1.TabIndex = 22;
+            button1.Text = "Zatvori";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // frmRegistracija
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 327);
-            this.Controls.Add(this.panel1);
-            this.Name = "frmRegistracija";
-            this.Text = "frmRegistracija";
-            this.Load += new System.EventHandler(this.frmRegistracija_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1036, 511);
+            Controls.Add(panel1);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "frmRegistracija";
+            Text = "frmRegistracija";
+            Load += frmRegistracija_Load;
+            ((System.ComponentModel.ISupportInitialize)err).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtIme;
-        private System.Windows.Forms.TextBox txtKorisnickoIme;
-        private System.Windows.Forms.TextBox txtPrezime;
-        private System.Windows.Forms.TextBox txtPutanjaDoSlike;
-        private System.Windows.Forms.TextBox txtPotvrdaLozinke;
-        private System.Windows.Forms.TextBox txtLozinka;
-        private System.Windows.Forms.ComboBox cmbSpol;
-        private System.Windows.Forms.ComboBox cmbZanimanje;
-        private System.Windows.Forms.Button btnRegistracija;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnUcitajSliku;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTelefon;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.ErrorProvider err;
-        private System.Windows.Forms.OpenFileDialog ofdSlika;
-        private System.Windows.Forms.Panel panel1;
+        private TextBox txtIme;
+        private TextBox txtKorisnickoIme;
+        private TextBox txtPrezime;
+        private TextBox txtPutanjaDoSlike;
+        private TextBox txtPotvrdaLozinke;
+        private TextBox txtLozinka;
+        private ComboBox cmbSpol;
+        private ComboBox cmbZanimanje;
+        private Button btnRegistracija;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Button btnUcitajSliku;
+        private Label label9;
+        private Label label10;
+        private TextBox txtTelefon;
+        private TextBox txtEmail;
+        private ErrorProvider err;
+        private OpenFileDialog ofdSlika;
+        private Panel panel1;
+        private Button button1;
     }
 }

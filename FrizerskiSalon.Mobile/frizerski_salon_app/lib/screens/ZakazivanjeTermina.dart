@@ -16,31 +16,31 @@ class ZakazivanjeTermina extends StatefulWidget {
 }
 
 class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
-  
-    List<DropdownMenuItem<dynamic>>? _uposlenici = [];
-    
-    Future<void> getUposlenici() async {
-      Map<String, String>? queryParams = null;
-      if(_odabraniTipTermina==2)
-      {
-        queryParams={'zanimanjeId': '1'};
-      }
-      else if(_odabraniTipTermina==1)
-      {
-        queryParams={'SviTattooArtisti':'true'};
-      }
-      var uposlenici = await APIService.Get("Uposlenik", queryParams);
-      uposlenici!.map((i)=>Uposlenici.fromJson(i)).toList();
-      setState(() {
-        _uposlenici = uposlenici
-        .map((i) {
-          return new DropdownMenuItem(child: 
-          new Text("${i['ime']} ${i['prezime']}", style: TextStyle(fontSize: 13.0, color: Colors.grey[600]),),
-          value: i['uposlenikId'],
-          );
-        }).toList();;
-      });
+  List<DropdownMenuItem<dynamic>>? _uposlenici = [];
+
+  Future<void> getUposlenici() async {
+    Map<String, String>? queryParams = null;
+    if (_odabraniTipTermina == 2) {
+      queryParams = {'zanimanjeId': '1'};
+    } else if (_odabraniTipTermina == 1) {
+      queryParams = {'SviTattooArtisti': 'true'};
     }
+    var uposlenici = await APIService.Get("Uposlenik", queryParams);
+    uposlenici!.map((i) => Uposlenici.fromJson(i)).toList();
+    setState(() {
+      _uposlenici = uposlenici.map((i) {
+        return new DropdownMenuItem(
+          child: new Text(
+            "${i['ime']} ${i['prezime']}",
+            style: TextStyle(fontSize: 13.0, color: Colors.grey[600]),
+          ),
+          value: i['uposlenikId'],
+        );
+      }).toList();
+      ;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -50,48 +50,52 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Zakazivanje termina")),
-      body: body()
-    );
+        appBar: AppBar(title: const Text("Zakazivanje termina")), body: body());
   }
-  
-    TextEditingController dtpDatumController = TextEditingController();
-    TextEditingController opisController = TextEditingController();
-    DateTime odabraniDatum = DateTime.now().add(Duration(days:1));
-    dynamic response;
-    int? _odabraniTipTermina;
-    int? _odabraniUposlenik;
+
+  TextEditingController dtpDatumController = TextEditingController();
+  TextEditingController opisController = TextEditingController();
+  DateTime odabraniDatum = DateTime.now().add(Duration(days: 1));
+  dynamic response;
+  int? _odabraniTipTermina;
+  int? _odabraniUposlenik;
 
   Widget body() {
     Map<String, dynamic> request;
     const _obaveznoPolje = "Polje je obavezno";
     TextStyle style = const TextStyle(fontSize: 16);
     List<DropdownMenuItem> tipTermina = [
-      DropdownMenuItem(child: Text("Frizura appointment",
-      style: TextStyle(fontSize: 16, color: Colors.grey)),
-      value: 1),
-      DropdownMenuItem(child: Text("Šišanje appointment",
-      style: TextStyle(fontSize: 16, color: Colors.grey),),
-      value: 2)
+      DropdownMenuItem(
+          child: Text("Frizura appointment",
+              style: TextStyle(fontSize: 16, color: Colors.grey)),
+          value: 1),
+      DropdownMenuItem(
+          child: Text(
+            "Šišanje appointment",
+            style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          value: 2)
     ];
     final _formKey = GlobalKey<FormState>();
     Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: odabraniDatum,
-        firstDate: DateTime.now().add(Duration(days:1)),
-        lastDate: DateTime(2025, 1));
+          context: context,
+          initialDate: odabraniDatum,
+          firstDate: DateTime.now().add(Duration(days: 1)),
+          lastDate: DateTime(2025, 1));
 
-      if(picked != null &&  picked != odabraniDatum) {
+      if (picked != null && picked != odabraniDatum) {
         setState(() {
           odabraniDatum = picked;
           dtpDatumController.text = "${odabraniDatum.toLocal()}".split(' ')[0];
         });
       }
     }
+
     Future<void> sendRequest(Map<String, dynamic> request) async {
       response = await APIService.Post("Termin", json.encode(request));
     }
+
     Future<void> _showDialog(String text, [dismissable = true]) async {
       return showDialog<void>(
         barrierDismissible: dismissable,
@@ -116,17 +120,19 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
         },
       );
     }
+
     final txtOpis = TextFormField(
       validator: (value) {
-         if(value != null && value.isNotEmpty) 
-         {
+        if (value != null && value.isNotEmpty) {
           if (value.length < 10) {
             return "Minimalna dužina je 10 znakova";
-          } 
-          else if (value.length > 200) {
-            return "Maksimalna dužina je 200 znakova"; 
-            } else {return null;}
-      }},
+          } else if (value.length > 200) {
+            return "Maksimalna dužina je 200 znakova";
+          } else {
+            return null;
+          }
+        }
+      },
       controller: opisController,
       obscureText: false,
       style: style,
@@ -156,7 +162,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
         _selectDate(context);
       },
     );
-  
+
     final btnZakazi = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
@@ -166,8 +172,13 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
             response = null;
-            request = {'klijentId': APIService.klijentId, 'uposlenikId': _odabraniUposlenik, 
-              'datum':odabraniDatum.toIso8601String(), 'opis':opisController.text, 'tipTerminaId':_odabraniTipTermina};
+            request = {
+              'klijentId': APIService.klijentId,
+              'uposlenikId': _odabraniUposlenik,
+              'datum': odabraniDatum.toIso8601String(),
+              'opis': opisController.text,
+              'tipTerminaId': _odabraniTipTermina
+            };
             await sendRequest(request);
             if (response == null) {
               _showDialog('Došlo je do greške, pokušajte opet');
@@ -229,59 +240,57 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
     }
 
     return SingleChildScrollView(
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(36.0),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Form(
-                            key: _formKey,
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Flexible(child: txtOpis),
-                                      const SizedBox(
-                                        width: 5.0,
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5.0),
-                                  Row(
-                                    children: [
-                                      Flexible(child: dtpDatum),
-                                      const SizedBox(
-                                        width: 5.0,
-                                      ),
-                                      Flexible(child: ddTipTermina())
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5.0),
-                                  Row(
-                                    children: [
-                                      Flexible(child: ddUposleni())
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5.0),
-                                  Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        const SizedBox(width: 15.0),
-                                        Expanded(child: btnZakazi)
-                                      ]),
-                                ]),
-                          ),
-                        ]),
-                  ),
+      child: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(36.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Flexible(child: txtOpis),
+                            const SizedBox(
+                              width: 5.0,
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 5.0),
+                        Row(
+                          children: [
+                            Flexible(child: dtpDatum),
+                            const SizedBox(
+                              width: 5.0,
+                            ),
+                            Flexible(child: ddTipTermina())
+                          ],
+                        ),
+                        const SizedBox(height: 5.0),
+                        Row(
+                          children: [Flexible(child: ddUposleni())],
+                        ),
+                        const SizedBox(height: 5.0),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SizedBox(width: 15.0),
+                              Expanded(child: btnZakazi)
+                            ]),
+                      ]),
                 ),
-              );
-          }
+              ]),
+        ),
+      ),
+    );
+  }
 }
-  //  );}}
+//  );}}

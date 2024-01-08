@@ -62,9 +62,11 @@ class _SviProizvodiState extends State<SviProizvodi> {
         });
   }
 
-  Future<List<VrsteProizvoda>> GetVrsteProizvoda(VrsteProizvoda? selectedItem) async {
+  Future<List<VrsteProizvoda>> GetVrsteProizvoda(
+      VrsteProizvoda? selectedItem) async {
     var vrsteProizvoda = await APIService.Get('TipProizvodum', null);
-    var vrsteProizvodaList = vrsteProizvoda!.map((i) => VrsteProizvoda.fromJson(i)).toList();
+    var vrsteProizvodaList =
+        vrsteProizvoda!.map((i) => VrsteProizvoda.fromJson(i)).toList();
     items = vrsteProizvodaList.map((item) {
       return DropdownMenuItem<VrsteProizvoda>(
         child: Text(item.naziv),

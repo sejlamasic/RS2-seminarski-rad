@@ -118,7 +118,7 @@ namespace FrizerskiSalon.WinUI.Proizvod
             try
             {
                 var result = ofdSlika.ShowDialog();
-                if (result == DialogResult.OK) 
+                if (result == DialogResult.OK)
                 {
                     var fileName = ofdSlika.FileName;
                     txtPutanjaDoSlike.Text = fileName;
@@ -126,7 +126,7 @@ namespace FrizerskiSalon.WinUI.Proizvod
                     pcbSlika.Image = Image.FromFile(fileName);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

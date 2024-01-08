@@ -53,6 +53,7 @@ namespace FrizerskiSalon.WinUI.LoginRegistracija
         }
 
         private async void btnRegistracija_Click(object sender, EventArgs e)
+        
         {
             if (ValidirajUnos())
             {
@@ -73,12 +74,13 @@ namespace FrizerskiSalon.WinUI.LoginRegistracija
                     byte[] slikaBytes = Encoding.ASCII.GetBytes(txtPutanjaDoSlike.Text);
                     MemoryStream stream = new MemoryStream(slikaBytes);
                     uposlenik.Slika = stream.ToArray();
-                    Global.prijavljeniUposlenik = await _uposlenikService.Insert<Uposlenik>(uposlenik,"relativeroute");
+                    Global.prijavljeniUposlenik = await _uposlenikService.Insert<Uposlenik>(uposlenik);
+                    MessageBox.Show("Uspješno izvršena registracija", "Registracija", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                     frmPrijava frm = new frmPrijava();
                     frm.Show();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -119,14 +121,23 @@ namespace FrizerskiSalon.WinUI.LoginRegistracija
                     var fileName = ofdSlika.FileName;
                     txtPutanjaDoSlike.Text = fileName;
                     var file = File.ReadAllBytes(fileName);
-                    //request.Slika = File.ReadAllBytes(filename);
+                    //result.Slika = File.ReadAllBytes(fileName);
                     Image orgImage = Image.FromFile(fileName);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        
+        {
+                this.Close();
+
+                frmHomePage frm = new frmHomePage();
+                frm.Show();
+            }
     }
 }

@@ -123,7 +123,7 @@ class _SviUposleniciState extends State<SviUposlenici> {
               context,
               MaterialPageRoute(
                   builder: (context) => PortfolioDetalji(
-                       uposlenik: uposlenik,
+                        uposlenik: uposlenik,
                       )));
         },
         child: Padding(

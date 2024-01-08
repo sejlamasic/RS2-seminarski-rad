@@ -3,7 +3,7 @@ import '/model/Klijenti.dart';
 import '/model/TipTermina.dart';
 import '/model/Uposlenici.dart';
 
-class Termini{
+class Termini {
   int? terminId;
   DateTime? datum;
   String? opis;
@@ -16,24 +16,24 @@ class Termini{
   Uposlenici? uposlenik;
   Klijenti? klijent;
 
-  Termini({
-    this.terminId,
-    this.datum,
-    this.opis,
-    this.cijena,
-    this.isOdobren,
-    this.isPlacen,
-    this.isOtkazan,
-    this.komentar,
-    this.tipTermina,
-    this.uposlenik,
-    this.klijent
-});
+  Termini(
+      {this.terminId,
+      this.datum,
+      this.opis,
+      this.cijena,
+      this.isOdobren,
+      this.isPlacen,
+      this.isOtkazan,
+      this.komentar,
+      this.tipTermina,
+      this.uposlenik,
+      this.klijent});
 
   factory Termini.fromJson(Map<String, dynamic> json) {
     return Termini(
       terminId: json['terminId'] as int,
-      datum: /*DateFormat('MM/dd/yyyy HH:mm:ss')*/DateTime.parse(json['datum'].toString()),
+      datum: /*DateFormat('MM/dd/yyyy HH:mm:ss')*/
+          DateTime.parse(json['datum'].toString()),
       opis: json['opis'] as String,
       cijena: json['cijena'] as double,
       isOdobren: json['isOdobren'] as bool,
@@ -47,16 +47,15 @@ class Termini{
   }
 
   Map<String, dynamic> toJson() => {
-    'terminId':terminId,
-    'datum':datum,
-    'opis':opis,
-    'cijena':cijena,
-    'isOdobren':isOdobren,
-    'isOtkazan':isOtkazan,
-    'komentar':komentar,
-    'tipTermina':tipTermina,
-    'uposlenik':uposlenik,
-    'klijent':klijent
-  };
-
+        'terminId': terminId,
+        'datum': datum,
+        'opis': opis,
+        'cijena': cijena,
+        'isOdobren': isOdobren,
+        'isOtkazan': isOtkazan,
+        'komentar': komentar,
+        'tipTermina': tipTermina,
+        'uposlenik': uposlenik,
+        'klijent': klijent
+      };
 }
