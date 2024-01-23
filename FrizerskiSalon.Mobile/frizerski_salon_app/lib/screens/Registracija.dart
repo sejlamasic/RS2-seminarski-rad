@@ -312,8 +312,7 @@ class _RegistracijaState extends State<Registracija> {
               'potvrdiLozinku': potvrdaLozinkeController.text
             };
             // ignore: unnecessary_null_comparison
-            if (lozinkaController.text == null ||
-                potvrdaLozinkeController.text == null) {
+            if (lozinkaController.text == null) {
               // ignore: avoid_print
               print("nedostaje lozinka ok");
             }

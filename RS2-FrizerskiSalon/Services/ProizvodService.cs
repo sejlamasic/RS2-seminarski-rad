@@ -4,9 +4,6 @@ using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
 using RS2_FrizerskiSalon.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using FrizerskiSalon.Modal.Requests;
 using FrizerskiSalon.Modal.SearchObjects;
 
@@ -96,8 +93,8 @@ namespace RS2_FrizerskiSalon.Services
 
 
         static object isLocked = new object();
-        static MLContext mlContext = null;
-        static ITransformer model = null;
+        static MLContext mlContext;
+        static ITransformer model;
         public List<FrizerskiSalon.Modal.Proizvod> Recommend(int id)
         {
             lock (isLocked)
@@ -105,51 +102,61 @@ namespace RS2_FrizerskiSalon.Services
                 if (mlContext == null)
                 {
                     mlContext = new MLContext();
-
-                    var tmpData = _context.Narudzbas.ToList();
-
-                    var data = new List<ProductEntry>();
-                    List<StavkeNarudzbe> stavkeNarudzbe;
-
-                    foreach (var x in tmpData)
+                    try
                     {
-                        stavkeNarudzbe = _context.StavkeNarudzbes.Where(e => e.NarudzbaId == x.NarudzbaId).ToList();
-                        if (stavkeNarudzbe.Count > 1)
+                        var tmpData = _context.Narudzbas.ToList();
+
+                        var data = new List<ProductEntry>();
+                        List<StavkeNarudzbe> stavkeNarudzbe;
+
+                        foreach (var x in tmpData)
                         {
-                            var distinctItemId = stavkeNarudzbe.Select(y => y.ProizvodId).ToList();
-
-                            distinctItemId.ForEach(y =>
+                            stavkeNarudzbe = _context.StavkeNarudzbes.Where(e => e.NarudzbaId == x.NarudzbaId).ToList();
+                            if (stavkeNarudzbe.Count > 1)
                             {
-                                var relatedItems = stavkeNarudzbe.Where(z => z.ProizvodId != y);
+                                var distinctItemId = stavkeNarudzbe.Select(y => y.ProizvodId).ToList();
 
-                                foreach (var z in relatedItems)
+                                distinctItemId.ForEach(y =>
                                 {
-                                    data.Add(new ProductEntry()
+                                    var relatedItems = stavkeNarudzbe.Where(z => z.ProizvodId != y);
+
+                                    foreach (var z in relatedItems)
                                     {
-                                        ProductID = (uint)y,
-                                        CoPurchaseProductID = (uint)z.ProizvodId,
-                                    });
-                                }
-                            });
+                                        data.Add(new ProductEntry()
+                                        {
+                                            ProductID = (uint)y,
+                                            CoPurchaseProductID = (uint)z.ProizvodId,
+                                        });
+                                    }
+                                });
+                            }
                         }
+
+                        var traindata = mlContext.Data.LoadFromEnumerable(data);
+
+                        MatrixFactorizationTrainer.Options options = new MatrixFactorizationTrainer.Options();
+                        options.MatrixColumnIndexColumnName = nameof(ProductEntry.ProductID);
+                        options.MatrixRowIndexColumnName = nameof(ProductEntry.CoPurchaseProductID);
+                        options.LabelColumnName = "Label";
+                        options.LossFunction = MatrixFactorizationTrainer.LossFunctionType.SquareLossOneClass;
+                        options.Alpha = 0.01;
+                        options.Lambda = 0.025;
+
+                        options.NumberOfIterations = 100;
+                        options.C = 0.00001;
+
+                        var est = mlContext.Recommendation().Trainers.MatrixFactorization(options);
+
+                        model = est.Fit(traindata);
+
                     }
-
-                    var traindata = mlContext.Data.LoadFromEnumerable(data);
-
-                    MatrixFactorizationTrainer.Options options = new MatrixFactorizationTrainer.Options();
-                    options.MatrixColumnIndexColumnName = nameof(ProductEntry.ProductID);
-                    options.MatrixRowIndexColumnName = nameof(ProductEntry.CoPurchaseProductID);
-                    options.LabelColumnName = "Label";
-                    options.LossFunction = MatrixFactorizationTrainer.LossFunctionType.SquareLossOneClass;
-                    options.Alpha = 0.01;
-                    options.Lambda = 0.025;
-
-                    options.NumberOfIterations = 100;
-                    options.C = 0.00001;
-
-                    var est = mlContext.Recommendation().Trainers.MatrixFactorization(options);
-
-                    model = est.Fit(traindata);
+                    catch (Exception ex)
+                    {
+                        // Log or handle the exception
+                        Console.WriteLine($"Error loading model: {ex.Message}");
+                        // You might want to return a default result or throw an exception here
+                        return new List<FrizerskiSalon.Modal.Proizvod>();
+                    }
                 }
             }
 
@@ -161,7 +168,7 @@ namespace RS2_FrizerskiSalon.Services
 
             foreach (var item in allItems)
             {
-                var predictionEngine = mlContext.Model.CreatePredictionEngine<ProductEntry, Copurchase_prediction>(model);
+                var predictionEngine = mlContext.Model.CreatePredictionEngine<ProductEntry, CopurchasePrediction>(model);
                 var prediction = predictionEngine.Predict(new ProductEntry()
                 {
                     ProductID = (uint)id,
@@ -178,7 +185,7 @@ namespace RS2_FrizerskiSalon.Services
         }
     }
 
-    public class Copurchase_prediction
+    public class CopurchasePrediction
     {
         public float Score { get; set; }
     }

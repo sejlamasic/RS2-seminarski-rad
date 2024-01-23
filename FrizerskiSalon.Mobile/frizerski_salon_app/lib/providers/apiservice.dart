@@ -28,7 +28,7 @@ class APIService with ChangeNotifier {
   // static const String _baseRoute = "http://10.0.2.2:80/api/";
   static const String _baseRoute = "http://localhost/api/";
   static Future<String?> prijava(String KorisnickoIme, String Lozinka) async {
-    String baseUrl = _baseRoute + "Klijent/login";
+    String baseUrl = "${_baseRoute}Klijent/login";
     final response = await http.post(
       Uri.parse(baseUrl),
       headers: <String, String>{
@@ -44,7 +44,7 @@ class APIService with ChangeNotifier {
       klijentId = map['id'];
       token = map['token'];
 
-      String baseUrl2 = _baseRoute + "Narudzba/AktivnaNarudzba/${klijentId}";
+      String baseUrl2 = "${_baseRoute}Narudzba/AktivnaNarudzba/$klijentId";
       var narudzba = await http.get(Uri.parse(baseUrl2),
           headers: {'Authorization': 'Bearer $token'});
       aktivnaNarudzba = json.decode(narudzba.body) as int;
@@ -59,7 +59,7 @@ class APIService with ChangeNotifier {
     String queryString = Uri(queryParameters: object).query;
     String baseUrl = _baseRoute + route;
     if (object != null) {
-      baseUrl = baseUrl + '?' + queryString;
+      baseUrl = '$baseUrl?$queryString';
     }
     final response = await http.get(Uri.parse(baseUrl),
         headers: //{HttpHeaders.authorizationHeader:'Bearer ${token}'}
@@ -74,9 +74,10 @@ class APIService with ChangeNotifier {
       String route, dynamic id, dynamic search) async {
     String baseUrl = _baseRoute + route;
     if (search != null) {
-      baseUrl = baseUrl + '?' + search.toString();
-    } else
-      baseUrl = _baseRoute + route + "/" + id.toString();
+      baseUrl = '$baseUrl?$search';
+    } else {
+      baseUrl = "$_baseRoute$route/$id";
+    }
     final response = await http
         .get(Uri.parse(baseUrl), headers: {'Authorization': 'Bearer $token'});
     if (response.statusCode == 200) {
@@ -119,7 +120,7 @@ class APIService with ChangeNotifier {
   }
 
   static Future<bool?> Delete(String route, dynamic id) async {
-    String baseUrl = _baseRoute + route + "/" + id.toString();
+    String baseUrl = "$_baseRoute$route/$id";
     final response = await http.delete(
       Uri.parse(baseUrl),
       headers: {'Authorization': 'Bearer $token'},

@@ -1,17 +1,15 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '/model/Termini.dart';
 import '/model/Uposlenici.dart';
 import '/providers/apiservice.dart';
 import '/screens/Home.dart';
-import '/screens/Pocetna.dart';
 
 class ZakazivanjeTermina extends StatefulWidget {
   const ZakazivanjeTermina({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ZakazivanjeTerminaState createState() => _ZakazivanjeTerminaState();
 }
 
@@ -19,7 +17,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
   List<DropdownMenuItem<dynamic>>? _uposlenici = [];
 
   Future<void> getUposlenici() async {
-    Map<String, String>? queryParams = null;
+    Map<String, String>? queryParams;
     if (_odabraniTipTermina == 2) {
       queryParams = {'zanimanjeId': '1'};
     } else if (_odabraniTipTermina == 1) {
@@ -29,15 +27,14 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
     uposlenici!.map((i) => Uposlenici.fromJson(i)).toList();
     setState(() {
       _uposlenici = uposlenici.map((i) {
-        return new DropdownMenuItem(
-          child: new Text(
+        return DropdownMenuItem(
+          value: i['uposlenikId'],
+          child: Text(
             "${i['ime']} ${i['prezime']}",
             style: TextStyle(fontSize: 13.0, color: Colors.grey[600]),
           ),
-          value: i['uposlenikId'],
         );
       }).toList();
-      ;
     });
   }
 
@@ -55,33 +52,35 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
 
   TextEditingController dtpDatumController = TextEditingController();
   TextEditingController opisController = TextEditingController();
-  DateTime odabraniDatum = DateTime.now().add(Duration(days: 1));
+  DateTime odabraniDatum = DateTime.now().add(const Duration(days: 1));
   dynamic response;
   int? _odabraniTipTermina;
   int? _odabraniUposlenik;
 
   Widget body() {
+    // ignore: unused_local_variable
     Map<String, dynamic> request;
-    const _obaveznoPolje = "Polje je obavezno";
+    const obaveznoPolje = "Polje je obavezno";
     TextStyle style = const TextStyle(fontSize: 16);
     List<DropdownMenuItem> tipTermina = [
-      DropdownMenuItem(
-          child: Text("Frizura appointment",
-              style: TextStyle(fontSize: 16, color: Colors.grey)),
-          value: 1),
-      DropdownMenuItem(
+      const DropdownMenuItem(
+          value: 1,
+          child: Text("Svečana frizura",
+              style: TextStyle(fontSize: 16, color: Colors.grey))),
+      const DropdownMenuItem(
+          value: 2,
           child: Text(
-            "Šišanje appointment",
+            "Šišanje",
             style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-          value: 2)
+          ))
     ];
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
+    // ignore: no_leading_underscores_for_local_identifiers
     Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
           context: context,
           initialDate: odabraniDatum,
-          firstDate: DateTime.now().add(Duration(days: 1)),
+          firstDate: DateTime.now().add(const Duration(days: 1)),
           lastDate: DateTime(2025, 1));
 
       if (picked != null && picked != odabraniDatum) {
@@ -96,6 +95,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
       response = await APIService.Post("Termin", json.encode(request));
     }
 
+    // ignore: no_leading_underscores_for_local_identifiers
     Future<void> _showDialog(String text, [dismissable = true]) async {
       return showDialog<void>(
         barrierDismissible: dismissable,
@@ -124,14 +124,15 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
     final txtOpis = TextFormField(
       validator: (value) {
         if (value != null && value.isNotEmpty) {
-          if (value.length < 10) {
-            return "Minimalna dužina je 10 znakova";
+          if (value.length < 5) {
+            return "Minimalna dužina je 5 znakova";
           } else if (value.length > 200) {
             return "Maksimalna dužina je 200 znakova";
           } else {
             return null;
           }
         }
+        return null;
       },
       controller: opisController,
       obscureText: false,
@@ -146,7 +147,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
       child: IgnorePointer(
         child: TextFormField(
           validator: (value) {
-            return value == null || value.isEmpty ? _obaveznoPolje : null;
+            return value == null || value.isEmpty ? obaveznoPolje : null;
           },
           controller: dtpDatumController,
           obscureText: false,
@@ -169,24 +170,35 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
       color: const Color(0xff01A0C7),
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () async {
-          if (_formKey.currentState!.validate()) {
-            response = null;
-            request = {
-              'klijentId': APIService.klijentId,
-              'uposlenikId': _odabraniUposlenik,
-              'datum': odabraniDatum.toIso8601String(),
-              'opis': opisController.text,
-              'tipTerminaId': _odabraniTipTermina
-            };
-            await sendRequest(request);
-            if (response == null) {
-              _showDialog('Došlo je do greške, pokušajte opet');
-            } else {
-              _showDialog('Uspješno poslan novi zahtjev za terminom');
-            }
-          }
-        },
+       onPressed: () async {
+  if (formKey.currentState!.validate()) {
+    response = null;
+
+    Map<String, dynamic> request = {
+      'klijentId': APIService.klijentId,
+      'uposlenikId': _odabraniUposlenik,
+      'datum': odabraniDatum.toIso8601String(),
+      'opis': opisController.text,
+      'tipTerminaId': _odabraniTipTermina,
+    };
+
+    // Set the price based on the selected type of service
+    if (_odabraniTipTermina == 1) {
+      // Svečana frizura
+      request['cijena'] = 50.00; // Set the price for Svečana frizura
+    } else if (_odabraniTipTermina == 2) {
+      // Šišanje
+      request['cijena'] = 30.00; // Set the price for Šišanje
+    }
+
+    await sendRequest(request);
+    if (response == null) {
+      _showDialog('Došlo je do greške, pokušajte opet');
+    } else {
+      _showDialog('Uspješno poslan novi zahtjev za terminom');
+    }
+  }
+},
         child: Text("Zakaži termin",
             textAlign: TextAlign.center,
             style: style.copyWith(
@@ -197,7 +209,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
     Widget ddTipTermina() {
       return DropdownButtonFormField<dynamic>(
         validator: (value) {
-          return value == null /*|| value.isEmpty*/ ? _obaveznoPolje : null;
+          return value == null  ? obaveznoPolje : null;
         },
         hint: Text(
           'Odaberite tip termina',
@@ -220,7 +232,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
     Widget ddUposleni() {
       return DropdownButtonFormField<dynamic>(
         validator: (value) {
-          return value == null /*|| value.isEmpty*/ ? _obaveznoPolje : null;
+          return value == null  ? obaveznoPolje : null;
         },
         hint: Text(
           'Odaberite uposlenika kod kojeg zakazujete termin',
@@ -249,7 +261,7 @@ class _ZakazivanjeTerminaState extends State<ZakazivanjeTermina> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Form(
-                  key: _formKey,
+                  key: formKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

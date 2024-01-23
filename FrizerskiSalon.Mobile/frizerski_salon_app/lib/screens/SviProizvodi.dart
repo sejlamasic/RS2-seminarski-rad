@@ -5,19 +5,22 @@ import '/providers/apiservice.dart';
 import 'DetaljiProizvoda.dart';
 
 class SviProizvodi extends StatefulWidget {
+  const SviProizvodi({super.key});
+
   //const SviProizvodi({Key? key}) : super(key: key);
   @override
+  // ignore: library_private_types_in_public_api
   _SviProizvodiState createState() => _SviProizvodiState();
 }
 
 class _SviProizvodiState extends State<SviProizvodi> {
-  VrsteProizvoda? _selectedVrsteProizvoda = null;
+  VrsteProizvoda? _selectedVrsteProizvoda;
   List<DropdownMenuItem> items = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Proizvodi'),
+        title: const Text('Proizvodi'),
       ),
       body: Column(
         children: [
@@ -33,7 +36,7 @@ class _SviProizvodiState extends State<SviProizvodi> {
         future: GetVrsteProizvoda(_selectedVrsteProizvoda),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: Text('Loading...'),
             );
           } else {
@@ -43,9 +46,9 @@ class _SviProizvodiState extends State<SviProizvodi> {
               );
             } else {
               return Padding(
-                padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                 child: DropdownButton<dynamic>(
-                  hint: Text('Odaberite vrstu proizvoda'),
+                  hint: const Text('Odaberite vrstu proizvoda'),
                   isExpanded: true,
                   items: items,
                   onChanged: (newVal) {
@@ -62,6 +65,7 @@ class _SviProizvodiState extends State<SviProizvodi> {
         });
   }
 
+  // ignore: non_constant_identifier_names
   Future<List<VrsteProizvoda>> GetVrsteProizvoda(
       VrsteProizvoda? selectedItem) async {
     var vrsteProizvoda = await APIService.Get('TipProizvodum', null);
@@ -69,14 +73,15 @@ class _SviProizvodiState extends State<SviProizvodi> {
         vrsteProizvoda!.map((i) => VrsteProizvoda.fromJson(i)).toList();
     items = vrsteProizvodaList.map((item) {
       return DropdownMenuItem<VrsteProizvoda>(
-        child: Text(item.naziv),
         value: item,
+        child: Text(item.naziv),
       );
     }).toList();
-    if (selectedItem != null && selectedItem.vrstaId != 0)
+    if (selectedItem != null && selectedItem.vrstaId != 0) {
       _selectedVrsteProizvoda = vrsteProizvodaList
           .where((element) => element.vrstaId == selectedItem.vrstaId)
           .first;
+    }
     return vrsteProizvodaList;
   }
 
@@ -85,7 +90,7 @@ class _SviProizvodiState extends State<SviProizvodi> {
         future: GetProizvodi(_selectedVrsteProizvoda),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: Text('Loading...'),
             );
           } else {
@@ -101,14 +106,17 @@ class _SviProizvodiState extends State<SviProizvodi> {
         });
   }
 
+  // ignore: non_constant_identifier_names
   Future<List<dynamic>> GetProizvodi(VrsteProizvoda? selectedItem) async {
-    Map<String, String>? queryParams = null;
-    if (selectedItem != null && selectedItem.vrstaId != 0)
+    Map<String, String>? queryParams;
+    if (selectedItem != null && selectedItem.vrstaId != 0) {
       queryParams = {'tipProizvodaId': selectedItem.vrstaId.toString()};
+    }
     var proizvodi = await APIService.Get('Proizvod', queryParams);
     return proizvodi!.map((i) => Proizvodi.fromJson(i)).toList();
   }
 
+  // ignore: non_constant_identifier_names
   Widget ProizvodiWidget(proizvod) {
     return Card(
       child: TextButton(
@@ -119,7 +127,7 @@ class _SviProizvodiState extends State<SviProizvodi> {
                   builder: (context) => DetaljiProizvoda(proizvod: proizvod)));
         },
         child: Padding(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: Text(proizvod.naziv + ' (' + proizvod.cijena + ' KM)')),
       ),
     );

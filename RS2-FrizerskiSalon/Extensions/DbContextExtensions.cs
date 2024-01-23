@@ -42,12 +42,17 @@ public static class DbContextExtensions
         var frizer2 = new Zanimanje { Naziv = "Frizer za stiliziranje kose" };
         var frizer3 = new Zanimanje { Naziv = "Frizer za farbanje" };
         var frizer4 = new Zanimanje { Naziv ="Frizer za pramenove" };
+        var frizer5 = new Zanimanje { Naziv = "Frizer za svečane frizure" };
+        var frizer6 = new Zanimanje { Naziv = "Frizer za djecu" };
 
         context.Zanimanjes.Add(frizer1);
         context.Zanimanjes.Add(frizer2);
         context.Zanimanjes.Add(frizer3);
         context.Zanimanjes.Add(frizer4);
-   
+        context.Zanimanjes.Add(frizer5);
+        context.Zanimanjes.Add(frizer6);
+
+
 
         // Klijent
         var klijent1 = new Klijent
@@ -559,6 +564,34 @@ public static class DbContextExtensions
         };
         // Nedostaju Emina i Azra
         context.Uposleniks.AddRange(uposlenik1, uposlenik2, uposlenik3, uposlenik4, uposlenik5, uposlenik7, uposlenik8, uposlenik9);
+        var termin = new Termin
+        {
+            TipTermina = tipTermina1,
+            Uposlenik = uposlenik4,
+            Klijent = klijent6,
+            Opis = "Kratko šišanje",
+            Datum = new DateTime(2024, 9, 20),
+            Cijena = 20,
+            IsPlacen = true,
+            IsOdobren = true,
+            IsOtkazan=false,
+            Komentar="komentar1"
+        };
+        var termin2 = new Termin
+        {
+            TipTermina = tipTermina2,
+            Uposlenik = uposlenik2,
+            Klijent = klijent7,
+            Opis = "Farbanje i šišanje",
+            Datum = new DateTime(2024, 3, 20),
+            Cijena = 50,
+            IsPlacen=false,
+            IsOdobren=true,
+            IsOtkazan = false,
+            Komentar = "komentar2"
+        };
+        context.Termins.Add(termin);
+        context.Termins.Add(termin2);
 
         // Izvjestaj
         var izvjestaji = new List<Izvjestaj>
@@ -624,56 +657,56 @@ public static class DbContextExtensions
         var obavijest1 = new Obavijest
         {
             Uposlenik = uposlenik1,
-            Datum = new DateTime(2022, 5, 27),
-            Naslov = "Provjera datuma",
-            Sadrzaj = "Testiram datum Update radiii"
+            Datum = new DateTime(2024, 5, 27),
+            Naslov = "50% sniženje",
+            Sadrzaj = "U junu sve svečane frizure snižene 50%"
         };
         var obavijest2 = new Obavijest
         {
             Uposlenik = uposlenik1,
-            Datum = new DateTime(2022, 5, 27),
-            Naslov = "Test",
-            Sadrzaj = "Pažnja pažnja obavještavamo vas da..."
+            Datum = new DateTime(2024, 9, 27),
+            Naslov = "Nova poslovnica",
+            Sadrzaj = "Pažnja pažnja obavještavamo vas da će naša nova poslovnica biti uskoro otvorena "
         };
         var obavijest3 = new Obavijest
         {
             Uposlenik = uposlenik1,
-            Datum = new DateTime(2022, 5, 27),
-            Naslov = "Lorem ipsum",
-            Sadrzaj = "Tekst obavijesti"
+            Datum = new DateTime(2024, 9, 27),
+            Naslov = "Svečano otvaranje  25.10.2024.",
+            Sadrzaj = "Nakon renovacije ponovo otvaramo naš frizerski salon "
         };
         var obavijest4 = new Obavijest
         {
             Uposlenik = uposlenik3,
-            Datum = new DateTime(2022, 7, 6),
+            Datum = new DateTime(2024, 7, 6),
             Naslov = "Obavijest1",
             Sadrzaj = "Tekst obavijesti"
         };
         var obavijest5 = new Obavijest
         {
             Uposlenik = uposlenik3,
-            Datum = new DateTime(2022, 8, 31),
+            Datum = new DateTime(2024, 8, 31),
             Naslov = "Debugging",
             Sadrzaj = "Let's debug. All okay!"
         };
         var obavijest6 = new Obavijest
         {
             Uposlenik = uposlenik3,
-            Datum = new DateTime(2022, 8, 31),
+            Datum = new DateTime(2024, 8, 31),
             Naslov = "Obavijest2",
             Sadrzaj = "Okej, sve radi."
         };
         var obavijest7 = new Obavijest
         {
             Uposlenik = uposlenik2,
-            Datum = new DateTime(2022, 9, 1),
+            Datum = new DateTime(2024, 9, 1),
             Naslov = "Godišnji odmor",
             Sadrzaj = "Poštovani, obavještavamo vas da studio neće raditi od 01.09. do 14.09. zbog kolektivnog godišnjeg odmora."
         };
         var obavijest8 = new Obavijest
         {
             Uposlenik = uposlenik2,
-            Datum = new DateTime(2022, 9, 1),
+            Datum = new DateTime(2024, 9, 1),
             Naslov = "Walk-in day",
             Sadrzaj = "16.09. u našem studiju će se održati walk in day. Klijenti mogu doći bez zakazanog termina."
         };
@@ -682,32 +715,32 @@ public static class DbContextExtensions
         // Portfolio
         var portfolio1 = new Portfolio
         {
-            Opis = "Lorem ipsum portfolio opis",
+            Opis = "U mom radu kao frizerki, posebno se ističem u stvaranju klasičnih frizura koje odišu elegancijom.",
             Uposlenik = uposlenik1
         };
         var portfolio2 = new Portfolio
         {
-            Opis = "Samo da provjerim neštoo",
+            Opis = "Oduvijek sam zaljubljena u najnovije trendove u svijetu friziranja.",
             Uposlenik = uposlenik3
         };
         var portfolio3 = new Portfolio
         {
-            Opis = "Portfolio ovog korisnika.",
+            Opis = "Moj pristup friziranju nije samo tehnički, već i umjetnički. Pletenice su moje remek-djelo.",
             Uposlenik = uposlenik2
         };
         var portfolio4 = new Portfolio
         {
-            Opis = "Dobrodošli! Ovo je moj portfolio.",
+            Opis = "Boje su moj kreativni izraz, i volim stvarati jedinstvene i individualne lookove.",
             Uposlenik = uposlenik4
         };
         var portfolio5 = new Portfolio
         {
-            Opis = "Nadam se da radi :)",
+            Opis = "Fokusiram se na praktične frizure koje naglašavaju vašu prirodnu ljepotu",
             Uposlenik = uposlenik5
         };
         var portfolio6 = new Portfolio
         {
-            Opis = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut",
+            Opis = "Kroz vrhunske tretmane i proizvode za njegu kose, pružam  uslugu koja revitalizira kosu.",
             Uposlenik = uposlenik7
         };
         var portfolio7 = new Portfolio

@@ -106,7 +106,7 @@ class _NarudzbaState extends State<Narudzba> {
                                   height: 26,
                                 ),
                                 Text(
-                                  'Ukupni iznos: ${narudzba!.ukupniIznos}\nPlaćeno: ${narudzba!.IsPlacena}\nIsporučeno: ${narudzba!.isIsporucena}',
+                                  'Ukupni iznos: ${narudzba!.ukupniIznos} KM\nPlaćeno: ${narudzba!.IsPlacena}\nIsporučeno: ${narudzba!.isIsporucena}',
                                   style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
