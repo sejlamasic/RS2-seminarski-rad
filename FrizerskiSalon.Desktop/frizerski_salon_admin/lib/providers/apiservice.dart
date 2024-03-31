@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class APIService with ChangeNotifier {
   HttpClient client = HttpClient();
 
-  static int? klijentId;
+  static int? uposlenikId;
   static String? korisnickoIme;
   static String? lozinka;
   static String? token;
@@ -18,8 +18,8 @@ class APIService with ChangeNotifier {
   APIService({required this.route});
 
   static void SetParameters(
-      int KlijentId, String KorisnickoIme, String Lozinka) {
-    klijentId = KlijentId;
+      int UposlenikId, String KorisnickoIme, String Lozinka) {
+    uposlenikId = UposlenikId;
     korisnickoIme = KorisnickoIme;
     lozinka = Lozinka;
   }
@@ -28,7 +28,7 @@ class APIService with ChangeNotifier {
   // static const String _baseRoute = "http://10.0.2.2:80/api/";
   static const String _baseRoute = "http://localhost/api/";
   static Future<String?> prijava(String KorisnickoIme, String Lozinka) async {
-    String baseUrl = "${_baseRoute}Klijent/login";
+    String baseUrl = "${_baseRoute}Uposlenik/login";
     final response = await http.post(
       Uri.parse(baseUrl),
       headers: <String, String>{
@@ -41,10 +41,10 @@ class APIService with ChangeNotifier {
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> map = jsonDecode(response.body);
-      klijentId = map['id'];
+      uposlenikId = map['id'];
       token = map['token'];
 
-      String baseUrl2 = "${_baseRoute}Narudzba/AktivnaNarudzba/$klijentId";
+      String baseUrl2 = "${_baseRoute}Narudzba/AktivnaNarudzba/$uposlenikId";
       var narudzba = await http.get(Uri.parse(baseUrl2),
           headers: {'Authorization': 'Bearer $token'});
       aktivnaNarudzba = json.decode(narudzba.body) as int;
@@ -88,8 +88,6 @@ class APIService with ChangeNotifier {
 
   static Future<dynamic> Post(String route, String body) async {
     String baseUrl = _baseRoute + route;
-    print(route);
-    print(body);
     final response = await http.post(
       Uri.parse(baseUrl),
       headers: <String, String>{
@@ -98,7 +96,6 @@ class APIService with ChangeNotifier {
       },
       body: body,
     );
-    print(response.statusCode);
     if (response.statusCode == 200) {
       return json.decode(response.body);
     }
