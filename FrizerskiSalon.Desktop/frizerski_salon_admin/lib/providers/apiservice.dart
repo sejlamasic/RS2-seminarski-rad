@@ -119,19 +119,20 @@ class APIService with ChangeNotifier {
     return null;
   }
 
-  static Future<bool?> Delete(String route, dynamic id) async {
-    String baseUrl = "$_baseRoute$route/$id";
-    final response = await http.delete(
-      Uri.parse(baseUrl),
-      headers: {'Authorization': 'Bearer $token'},
-    );
+ static Future<bool?> Delete(String route, dynamic id) async {
+  String baseUrl = "$_baseRoute$route/$id";
+  final response = await http.delete(
+    Uri.parse(baseUrl),
+    headers: {'Authorization': 'Bearer $token'},
+  );
 
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    }
-    return null;
+  if (response.statusCode == 200) {
+    return true; 
+  } else {
+    print('Delete request failed with status: ${response.statusCode}');
+    return false;
   }
-
+}
   /*Future<dynamic> get(dynamic searchObject) async {
     print("called ProductProvider.GET METHOD");
     var url = Uri.parse("http://10.0.2.2:52830/api/Proizvod");
