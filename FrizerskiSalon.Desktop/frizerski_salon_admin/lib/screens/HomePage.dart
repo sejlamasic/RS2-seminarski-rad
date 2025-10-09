@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frizerski_salon_admin/screens/Uposlenik.dart';
 import 'Proizvodi.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _State extends State<HomePageScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const ProizvodiScreen(),
-    const GalleryPage(),
+    const UposlenikScreen(),
     const ContactPage(),
   ];
 
@@ -55,12 +56,19 @@ class _State extends State<HomePageScreen> {
               ),
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.photo),
+            TextButton(
             onPressed: () {
-              _onItemTapped(2);
+              _onItemTapped(2); // Navigate to UposlenikScreen
             },
+            child: const Text(
+              'Uposlenik',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
           ),
+          
           IconButton(
             icon: const Icon(Icons.contact_mail),
             onPressed: () {
@@ -84,7 +92,7 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            'assets/images/hairdressersalon.jpg',
+            'assets/images/naslovnaSlika.jpeg',
             width: double.infinity,
             height: 400,
             fit: BoxFit.cover,

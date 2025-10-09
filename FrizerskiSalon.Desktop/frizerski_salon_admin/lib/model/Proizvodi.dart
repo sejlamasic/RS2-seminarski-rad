@@ -16,19 +16,26 @@ class Proizvodi {
     this.slika,
     this.opis,
   });
+factory Proizvodi.fromJson(Map<String, dynamic> json) {
+  String stringByte = json["slika"] as String;
+  
+  // Ensure there are no extra characters in the base64 string
+  stringByte = stringByte.replaceAll(RegExp(r'\s+'), '');
 
-  factory Proizvodi.fromJson(Map<String, dynamic> json) {
-    String stringByte = json["slika"] as String;
-    List<int> bytes = base64.decode(stringByte);
-    return Proizvodi(
-      proizvodId: json["proizvodId"],
-      tipProizvodaId: json["tipProizvodaId"],
-      naziv: json["naziv"],
-      cijena: json["cijena"].toString(),
-      slika: bytes,
-      opis: json["opis"],
-    );
-  }
+  List<int> bytes = base64.decode(stringByte);
+  
+  // Log the byte data for debugging
+  print("Decoded bytes length: ${bytes.length}");
+  
+  return Proizvodi(
+    proizvodId: json["proizvodId"],
+    tipProizvodaId: json["tipProizvodaId"],
+    naziv: json["naziv"],
+    cijena: json["cijena"].toString(),
+    slika: bytes,
+    opis: json["opis"],
+  );
+}
 
   Map<String, dynamic> toJson() {
     return {

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class APIService with ChangeNotifier {
   HttpClient client = HttpClient();
@@ -55,6 +56,13 @@ class APIService with ChangeNotifier {
     return null;
   }
 
+  static Future<void> loadToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token');
+    uposlenikId = prefs.getInt('uposlenikId');
+    korisnickoIme = prefs.getString('korisnickoIme');
+  }
+
   static Future<List<dynamic>?> Get(String route, dynamic object) async {
     String queryString = Uri(queryParameters: object).query;
     String baseUrl = _baseRoute + route;
@@ -102,37 +110,41 @@ class APIService with ChangeNotifier {
     return null;
   }
 
-  static Future<dynamic> Put(String route, int id, String body) async {
+  static Future<bool> Put(String route, int id, String body) async {
     String baseUrl = _baseRoute + route + "/" + id.toString();
     final response = await http.put(
       Uri.parse(baseUrl),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-        // HttpHeaders.authorizationHeader: basicAuth
         'Authorization': 'Bearer $token'
       },
       body: body,
     );
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      return true; // update uspješan
+    } else {
+      print(
+          "PUT request failed. Status: ${response.statusCode}, Body: ${response.body}");
+      return false;
     }
-    return null;
   }
 
- static Future<bool?> Delete(String route, dynamic id) async {
-  String baseUrl = "$_baseRoute$route/$id";
-  final response = await http.delete(
-    Uri.parse(baseUrl),
-    headers: {'Authorization': 'Bearer $token'},
-  );
+  static Future<bool?> Delete(String route, dynamic id) async {
+    String baseUrl = "$_baseRoute$route/$id";
+    final response = await http.delete(
+      Uri.parse(baseUrl),
+      headers: {'Authorization': 'Bearer $token'},
+    );
 
-  if (response.statusCode == 200) {
-    return true; 
-  } else {
-    print('Delete request failed with status: ${response.statusCode}');
-    return false;
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      print('Delete request failed with status: ${response.statusCode}');
+      return false;
+    }
   }
-}
+
   /*Future<dynamic> get(dynamic searchObject) async {
     print("called ProductProvider.GET METHOD");
     var url = Uri.parse("http://10.0.2.2:52830/api/Proizvod");
