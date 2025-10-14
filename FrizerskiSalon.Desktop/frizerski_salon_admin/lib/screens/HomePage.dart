@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frizerski_salon_admin/screens/Klijenti.dart';
 import 'package:frizerski_salon_admin/screens/Uposlenik.dart';
 import 'Proizvodi.dart';
 
@@ -15,6 +16,7 @@ class _State extends State<HomePageScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const ProizvodiScreen(),
+    const KlijentiScreen(),
     const UposlenikScreen(),
     const ContactPage(),
   ];
@@ -56,9 +58,21 @@ class _State extends State<HomePageScreen> {
               ),
             ),
           ),
+          TextButton(
+            onPressed: () {
+              _onItemTapped(2);
+            },
+            child: const Text(
+              'Klijenti',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
             TextButton(
             onPressed: () {
-              _onItemTapped(2); // Navigate to UposlenikScreen
+              _onItemTapped(3); 
             },
             child: const Text(
               'Uposlenik',
@@ -72,7 +86,7 @@ class _State extends State<HomePageScreen> {
           IconButton(
             icon: const Icon(Icons.contact_mail),
             onPressed: () {
-              _onItemTapped(3);
+              _onItemTapped(4);
             },
           ),
         ],
